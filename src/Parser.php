@@ -8,9 +8,9 @@ namespace johnsnook\parsel;
 
 class Parser {
 
-    const QUOTE_NONE = 0;
-    const QUOTE_SINGLE = 1;
-    const QUOTE_DOUBLE = 2;
+    const QUOTE_NONE = null;
+    const QUOTE_SINGLE = "'";
+    const QUOTE_DOUBLE = '"';
 
     /**
      * @param Token[] $tokens
@@ -106,7 +106,7 @@ class Parser {
     }
 
     /**
-     * Check if the token is fuzzy (is not quoted and contains *)
+     * Check if the token is fuzzy (is not single quoted and contains *)
      *
      * @param Token $token
      * @param string $value
@@ -114,10 +114,28 @@ class Parser {
      * @return bool
      */
     private static function isFuzzy($token, $value) { #: bool
-        if ($token->isTypeOf([Tokens::T_TERM_QUOTED, Tokens::T_TERM_QUOTED_SINGLE])) {
+        if ($token->isTypeOf([Tokens::T_TERM_QUOTED_SINGLE])) {
             return false;
         }
         return false !== (strpos($value, '*') || strpos($value, '?'));
+    }
+
+    /**
+     * Check if the token is fuzzy (is not single quoted and contains *)
+     *
+     * @param Token $token
+     * @param string $value
+     *
+     * @return bool
+     */
+    private static function quoteType($token) { #: bool
+        if ($token->isTypeOf(Tokens::T_TERM_QUOTED)) {
+            return self::QUOTE_DOUBLE;
+        }
+        if ($token->isTypeOf(Tokens::T_TERM_QUOTED_SINGLE)) {
+            return self::QUOTE_SINGLE;
+        }
+        return self::QUOTE_NONE;
     }
 
     /**

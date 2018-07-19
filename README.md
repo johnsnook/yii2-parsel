@@ -1,6 +1,46 @@
-Yii2 Search Parser
+Yii2 Parsel
 ==================
-Allows developers to provide a search query interface
+Allows developers to provide a boolean search query interface.
+
+Turns '`georgia -(atlanta or decatur)`' into
+
+```sql
+SELECT 
+  "ip", /* ip address */
+  "visits", /* how many requests they've made */
+  "city", 
+  "region" 
+FROM 
+/* A table similar to apaches access log.  See my extension yii2-ipFilter */
+  "visitor" 
+WHERE 
+  (
+    ("visitor"."ip" ILIKE '%georgia%') 
+    OR ("visitor"."city" ILIKE '%georgia%') 
+    OR ("visitor"."region" ILIKE '%georgia%')
+  ) 
+  AND ( /** marvel as we efortlessly generate a subquery */
+    "ip" NOT IN (
+      SELECT 
+        "ip" 
+      FROM 
+        "visitor" 
+      WHERE 
+        (
+          ("visitor"."ip" ILIKE '%atlanta%') 
+          OR ("visitor"."city" ILIKE '%atlanta%') 
+          OR ("visitor"."region" ILIKE '%atlanta%')
+        ) 
+        OR (
+          ("visitor"."ip" ILIKE '%decatur%') 
+          OR ("visitor"."city" ILIKE '%decatur%') 
+          OR ("visitor"."region" ILIKE '%decatur%')
+        )
+    )
+  )
+```
+
+
 
 Installation
 ------------
@@ -10,13 +50,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist johnsnook/yii2-search-parse "*"
+php composer.phar require --prefer-dist johnsnook/yii2-parsel "*"
 ```
 
 or add
 
 ```
-"johnsnook/yii2-search-parse": "*"
+"johnsnook/yii2-parsel": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -28,4 +68,37 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \johnsnook\searchParse\AutoloadExample::widget(); ?>```
+$userQuery = 'good AND plenty -licorice';
+$query = Post::find()->select('name', 'description', 'content');
+$query = \johnsnook\parsel\ParselQuery::build($query, $userQuery);
+$query->all();
+```
+
+Tokens/behavior:
+-----
+Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is currently case insensitive since it was written with `ILIKE`.  Future version will be more ecumenical, and detect PostgreSQL or other database that support this feature.
+
+##### Conjunctives:
+
+'AND' is the default behavior. "smart pretty" is the same as "smart AND pretty."
+
+'OR' allows more results in your query:  "smart OR pretty."
+
+##### Operators:
+
+Negation: '-'.  The user query "smart pretty -judgmental" parses to "smart AND pretty AND NOT judgmental"
+
+Sub-query : '()', Allows grouping of terms .  The user query "-crazy (smart AND pretty)" parses to "NOT crazy AND (smart and pretty)".
+
+Wildcard: '*', fuzzy matches.  "butt\*" matches butt, buttery, buttered etc.
+
+Character wildcard: '_', matches one character.  "boo\_" matches boot, book, bool, boon, etc.
+
+Full match: '=', field match.  Entire fields must be equal to the term.  "=georgia" only matches where one or more fields is exactly equal to the search term.  The search term will NOT be bracketed with %, but wildcards can still be used.
+
+Phrase: double quotes.  '"Super fun"' searches for the full phrase, space include.  Wild cards, negation and exact match operators all work within the phrase.
+
+Phrase, no wildcards: single quotes.  The term will not be evaluated for * or _, but will be wrapped in wildcards.  If a % or _ is in the term, it will be escaped.  'P%on*' becomes '%P\%on\*%'.
+
+##### Examples
+

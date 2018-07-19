@@ -35,6 +35,7 @@ class Lexer {
             '\)' => Tokens::T_BRACE_CLOSE,
             '(AND|OR)' => Tokens::T_KEYWORD,
             '-' => Tokens::T_NEGATION,
+            '=' => Tokens::T_FULL_MATCH,
             '"[^"]+"' => Tokens::T_TERM_QUOTED,
             "'[^']+'" => Tokens::T_TERM_QUOTED_SINGLE,
             '[^\s!\(\)]+' => Tokens::T_TERM,
