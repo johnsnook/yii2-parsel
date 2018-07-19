@@ -1,0 +1,28 @@
+{
+    "name": "johnsnook/yii2-parsel",
+    "description": "Allows developers to provide a search query interface similar to Sphinx",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "extension", "search", "query", "parse"],
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "John Michael Snook",
+            "email": "jsnook@gmail.com"
+        }
+    ],
+    "require": {
+        "nikic/Phlexy": "dev-master",
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "johnsnook\\parsel\\": "/src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nikic/Phlexy.git"
+        }
+    ]
+}
