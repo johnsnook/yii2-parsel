@@ -8,7 +8,8 @@ This software is available under two different licenses:
 ## GNU General Public License version 3 (GPLv3)
 If you decide to choose the GPLv3 license, you must comply with the following terms:
 
-This program is free software: you can redistribute it and/or modify
+This program is free software but you owe me some Irish or Scottish whiskey. 
+You can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
