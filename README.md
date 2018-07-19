@@ -40,7 +40,21 @@ WHERE
   )
 ```
 
-
+`╔════════════════╤════════╤═══════════════╤═════════╗`
+`║ Ip             │ Visits │ City          │ region  ║`
+`╟────────────────┼────────┼───────────────┼─────────╢`
+`║ 107.77.232.216 │ 16     │               │ Georgia ║`
+`╟────────────────┼────────┼───────────────┼─────────╢`
+`║ 107.77.235.199 │ 3      │               │ Georgia ║`
+`╟────────────────┼────────┼───────────────┼─────────╢`
+`║ 174.218.142.27 │ 1      │ Lawrenceville │ Georgia ║`
+`╟────────────────┼────────┼───────────────┼─────────╢`
+`║ 107.77.233.225 │ 18     │               │ Georgia ║`
+`╟────────────────┼────────┼───────────────┼─────────╢`
+`║ 205.201.132.14 │ 42     │ Woodstock     │ Georgia ║`
+`╟────────────────┼────────┼───────────────┼─────────╢`
+`║ 192.3.160.15   │ 4      │ Douglas       │ Georgia ║`
+`╚════════════════╧════════╧═══════════════╧═════════╝`
 
 Installation
 ------------
@@ -61,9 +75,10 @@ or add
 
 to the require section of your `composer.json` file.
 
-
 Usage
 -----
+
+> *"Look, I didn't know I could speak Parseltongue! What else don't I know about myself? Look. Maybe you can do something, even something horrible and not know you did it."*
 
 Once the extension is installed, simply use it in your code by  :
 
@@ -88,7 +103,7 @@ Fields to be search must be either text, varchar or char currently.  Future vers
 
 Negation: '-'.  The user query "smart pretty -judgmental" parses to "smart AND pretty AND NOT judgmental"
 
-Sub-query : '()', Allows grouping of terms .  The user query "-crazy (smart AND pretty)" parses to "NOT crazy AND (smart and pretty)".
+Sub-query : '()', Allows grouping of terms .  The user query "-crazy (smart AND pretty)" parses to "NOT crazy AND (smart AND pretty)".
 
 Wildcard: '*', fuzzy matches.  "butt\*" matches butt, buttery, buttered etc.
 
