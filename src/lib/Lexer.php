@@ -1,6 +1,6 @@
 <?php
 
-namespace johnsnook\parsel;
+namespace johnsnook\parsel\lib;
 
 /**
  * This file is part of the Yii2 extension module, yii2-parsel.

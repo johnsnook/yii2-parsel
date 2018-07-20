@@ -13,31 +13,21 @@
 
 namespace johnsnook\parsel;
 
+use johnsnook\parsel\lib\Lexer;
+use johnsnook\parsel\lib\Parser;
+use johnsnook\parsel\lib\ParserException;
 use yii\db\Query;
 use yii\base\InvalidConfigException;
-use johnsnook\parsel\ParserException;
 
 /**
  * The main class for this extension.  The main method is {{build}}.
  */
-class ParselQuery extends \yii\base\BaseObject {
+class ParselQuery {
 
     /**
-     * @var string The case insensitive database operator to use.
+     * @var string The message when a query can't be parsed.
      */
-    private $like;
     private $lastError;
-
-    /**
-     * {@inheritdoc}
-     * Set which fuzzy database operator to use.  My favorite, postgresql uses
-     * ILIKE, most others just use LIKE.
-     * @todo figure out what all the other databases use.  I only checked a few.
-     */
-    public function init() {
-        parent::init();
-        $this->like = (\Yii::$app->db->getDriverName() === 'pgsql' ? 'ILIKE' : 'LIKE');
-    }
 
     /**
      * The main event.  Takes a database query, a user entered query and an
@@ -50,6 +40,7 @@ class ParselQuery extends \yii\base\BaseObject {
      * @return yii\db\Query The transformed database query.
      */
     public static function build($query, $userSearch, $fields = null) {
+        $like = self::fuzzyOperator();
         /** If things go tits up, return the unmodified original. */
         $pQuery = clone $query;
         if (is_null($fields)) {
@@ -70,7 +61,7 @@ class ParselQuery extends \yii\base\BaseObject {
                 /**
                  * Welp, something is borked.  Set the errormessage and bounce
                  */
-                $this->lastError = $pe->message;
+                self::$lastError = $pe->message;
                 return $query;
             }
         } else {
@@ -88,7 +79,11 @@ class ParselQuery extends \yii\base\BaseObject {
                     $where = ['or'];
                     $value = self::prepareTermValue($queryPart);
                     foreach ($fields as $field) {
-                        $where[] = [$this->like, $field, $value, false]; //{$neg}
+                        if ($queryPart['fullMatch']) {
+                            $where[] = [$field => $value]; //{$neg}
+                        } else {
+                            $where[] = [$like, $field, $value, false]; //{$neg}
+                        }
                     }
 
                     /** Ties a not() around the condition(s) */
@@ -130,6 +125,15 @@ class ParselQuery extends \yii\base\BaseObject {
     }
 
     /**
+     * Set which fuzzy database operator to use.  My favorite, postgresql uses
+     * ILIKE, most others just use LIKE.
+     * @todo figure out what all the other databases use.  I only checked a few.
+     */
+    private static function fuzzyOperator() {
+        return (\Yii::$app->db->getDriverName() === 'pgsql' ? 'ILIKE' : 'LIKE');
+    }
+
+    /**
      * Based on the metadata, get the term ready for a SQL statement
      *
      * @param array $term
@@ -138,7 +142,7 @@ class ParselQuery extends \yii\base\BaseObject {
     public static function prepareTermValue($term) {
         $term = (object) $term;
 
-        if ($term->isFuzzy) {
+        if ($term->fuzzy) {
             $value = str_replace(['*', '?'], ['%', '_'], $term->value);
             $split = str_split($value);
             /**
@@ -155,7 +159,7 @@ class ParselQuery extends \yii\base\BaseObject {
             /** single quote terms are literal, so escape any wildcard chars */
             $value = str_replace('%', '\%', str_replace('_', '\_', $term->value));
         } else {
-            $value = '%' . $value . '%';
+            $value = '%' . $term->value . '%';
         }
         return $value;
     }

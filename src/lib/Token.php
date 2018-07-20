@@ -11,7 +11,7 @@
  * @copyright 2018 John Snook Consulting
  */
 
-namespace johnsnook\parsel;
+namespace johnsnook\parsel\lib;
 
 final class Token {
 

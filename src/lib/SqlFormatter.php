@@ -1,6 +1,6 @@
 <?php
 
-namespace johnsnook\parsel;
+namespace johnsnook\parsel\lib;
 
 /**
  * SQL Formatter is a collection of utilities for debugging SQL queries.

@@ -1,8 +1,8 @@
 Yii2 Parsel
 ==================
-Allows developers to provide a boolean search query interface, similar to Google or Sphinx search.
+Allows developers to provide a boolean search query interface, similar to Google or Sphinx search or other full-text search (FTS) engines.
 
-Turns a user query like '`georgia -(atlanta or decatur)`' into
+Turns a user query like '`georgia -(atlanta or decatur)`' into '`georgia AND NOT (atlanta or decatur)`' which is then turn into the follow SQL:
 
 ```sql
 SELECT 
@@ -98,13 +98,13 @@ Tokens/behavior:
 -----
 Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is case insensitive as long as your database's `LIKE` operator is.  PostgreSQL will use `ILIKE`.  
 
-##### Conjunctives:
+#### Conjunctives:
 
 'AND' is the default behavior. "smart pretty" is the same as "smart AND pretty."
 
 'OR' allows more results in your query:  "smart OR pretty."
 
-##### Operators:
+#### Operators:
 
 Negation: '-'.  The user query "smart pretty -judgmental" parses to "smart AND pretty AND NOT judgmental"
 
@@ -120,11 +120,11 @@ Phrase: double quotes.  '"Super fun"' searches for the full phrase, space includ
 
 Phrase, no wildcards: single quotes.  The term will not be evaluated for * or _, but will be wrapped in wildcards.  If a % or _ is in the term, it will be escaped.  'P%on*' becomes '%P\%on\*%'.
 
-##### Examples
+#### Examples
 
 
 
-##### Acknowledgements
+## Acknowledgements
 
 This project was built by heavily modifying the excellent "[Search Query Parser](https://github.com/pimcore/search-query-parser)" project.  I de-abstracted the token structure and modified the parser class to better fit my needs.  Their licsence file should be found at the root of this project.
 
