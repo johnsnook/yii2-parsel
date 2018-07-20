@@ -1,10 +1,17 @@
 <?php
 
-namespace johnsnook\parsel;
+/**
+ * This file is part of the Yii2 extension module, yii2-parsel
+ * It's been heavily modified from the original by pimcore
+ * @see https://github.com/pimcore/search-query-parser
+ *
+ * @author John Snook
+ * @date 2018-07-28
+ * @license https://github.com/johnsnook/yii2-parsel/LICENSE
+ * @copyright 2018 John Snook Consulting
+ */
 
-//use johnsnook\parsel\part\Keyword;
-//use johnsnook\parsel\part\Query;
-//use johnsnook\parsel\part\Term;
+namespace johnsnook\parsel;
 
 class Parser {
 
@@ -13,12 +20,11 @@ class Parser {
     const QUOTE_DOUBLE = '"';
 
     /**
-     * @param Token[] $tokens
+     * @param Token[] $tokens The token lexemes from Lexer.php
      *
-     * @return Query
+     * @return array An array representing the terms, conjunctions and subqueries and their properties
      */
-    public static function parse($tokens) {#: Query
-        //$query = new Query();
+    public static function parse($tokens) {
 
         /** @var Query[] $queryStack */
         $queryStack = [];
@@ -36,14 +42,14 @@ class Parser {
                 ));
             }
             // brace open/close - sub-queries
-            if ($token->isTypeOf(Tokens::T_BRACE_OPEN)) {
+            if ($token->isTypeOf(Tokens::BRACE_OPEN)) {
                 array_push($queryStack, $currentQuery);
 
                 $negated = self::isNegated($i, $tokens);
                 $currentQuery = ['type' => 'query', 'negated' => $negated, 'items' => []];
             }
 
-            if ($token->isTypeOf(Tokens::T_BRACE_CLOSE)) {
+            if ($token->isTypeOf(Tokens::BRACE_CLOSE)) {
                 if (count($queryStack) === 0) {
                     throw new ParserException('Can\'t close sub query as query stack is empty');
                 }
@@ -88,8 +94,8 @@ class Parser {
                     $currentQuery[] = $term;
                 }
             }
-            if ($token->isTypeOf(Tokens::T_KEYWORD)) {
-                if ($previousToken && $previousToken->isTypeOf(Tokens::T_KEYWORD)) {
+            if ($token->isTypeOf(Tokens::KEYWORD)) {
+                if ($previousToken && $previousToken->isTypeOf(Tokens::KEYWORD)) {
                     throw new ParserException(sprintf(
                             'Keyword can\'t be succeeded by another keyword (%s %s)', $previousToken->getContent(), $token->getContent()
                     ));
@@ -114,7 +120,7 @@ class Parser {
      * @return bool
      */
     private static function isFuzzy($token, $value) { #: bool
-        if ($token->isTypeOf([Tokens::T_TERM_QUOTED_SINGLE])) {
+        if ($token->isTypeOf([Tokens::TERM_QUOTED_SINGLE])) {
             return false;
         }
         return false !== (strpos($value, '*') || strpos($value, '?'));
@@ -129,17 +135,17 @@ class Parser {
      * @return bool
      */
     private static function quoteType($token) { #: bool
-        if ($token->isTypeOf(Tokens::T_TERM_QUOTED)) {
+        if ($token->isTypeOf(Tokens::TERM_QUOTED)) {
             return self::QUOTE_DOUBLE;
         }
-        if ($token->isTypeOf(Tokens::T_TERM_QUOTED_SINGLE)) {
+        if ($token->isTypeOf(Tokens::TERM_QUOTED_SINGLE)) {
             return self::QUOTE_SINGLE;
         }
         return self::QUOTE_NONE;
     }
 
     /**
-     * Check if expression was negated by looking back at previous tokens
+     * Check if expression is a full match by looking back at previous tokens
      *
      * @param int $index
      * @param Token[] $tokens
@@ -155,7 +161,7 @@ class Parser {
         }
 
         for ($i = $startIndex; $i >= 0; $i--) {
-            if ($tokens[$i]->isTypeOf(Tokens::T_FULL_MATCH)) {
+            if ($tokens[$i]->isTypeOf(Tokens::FULL_MATCH)) {
                 $fullMatch = !$fullMatch;
             } else {
                 break;
@@ -182,7 +188,7 @@ class Parser {
         }
 
         for ($i = $startIndex; $i >= 0; $i--) {
-            if ($tokens[$i]->isTypeOf(Tokens::T_NEGATION)) {
+            if ($tokens[$i]->isTypeOf(Tokens::NEGATION)) {
                 $negated = !$negated;
             } else {
                 break;
@@ -202,9 +208,9 @@ class Parser {
     private static function normalizeTerm($token) {//: string
         $term = $token->getContent();
 
-        if ($token->isTypeOf(Tokens::T_TERM_QUOTED)) {
+        if ($token->isTypeOf(Tokens::TERM_QUOTED)) {
             $term = preg_replace('/^"(.*)"$/', '$1', $term);
-        } elseif ($token->isTypeOf(Tokens::T_TERM_QUOTED_SINGLE)) {
+        } elseif ($token->isTypeOf(Tokens::TERM_QUOTED_SINGLE)) {
             $term = preg_replace('/^\'(.*)\'$/', '$1', $term);
         }
 

@@ -1,8 +1,8 @@
 Yii2 Parsel
 ==================
-Allows developers to provide a boolean search query interface.
+Allows developers to provide a boolean search query interface, similar to Google or Sphinx search.
 
-Turns '`georgia -(atlanta or decatur)`' into
+Turns a user query like '`georgia -(atlanta or decatur)`' into
 
 ```sql
 SELECT 
@@ -40,21 +40,26 @@ WHERE
   )
 ```
 
-`╔════════════════╤════════╤═══════════════╤═════════╗`
-`║ Ip             │ Visits │ City          │ region  ║`
-`╟────────────────┼────────┼───────────────┼─────────╢`
-`║ 107.77.232.216 │ 16     │               │ Georgia ║`
-`╟────────────────┼────────┼───────────────┼─────────╢`
-`║ 107.77.235.199 │ 3      │               │ Georgia ║`
-`╟────────────────┼────────┼───────────────┼─────────╢`
-`║ 174.218.142.27 │ 1      │ Lawrenceville │ Georgia ║`
-`╟────────────────┼────────┼───────────────┼─────────╢`
-`║ 107.77.233.225 │ 18     │               │ Georgia ║`
-`╟────────────────┼────────┼───────────────┼─────────╢`
-`║ 205.201.132.14 │ 42     │ Woodstock     │ Georgia ║`
-`╟────────────────┼────────┼───────────────┼─────────╢`
-`║ 192.3.160.15   │ 4      │ Douglas       │ Georgia ║`
-`╚════════════════╧════════╧═══════════════╧═════════╝`
+```bash
+╔════════════════╤════════╤═══════════════╤═════════╗
+║ Ip             │ Visits │ City          │ region  ║
+╟────────────────┼────────┼───────────────┼─────────╢
+║ 107.77.232.216 │ 16     │               │ Georgia ║
+╟────────────────┼────────┼───────────────┼─────────╢
+║ 107.77.235.199 │ 3      │               │ Georgia ║
+╟────────────────┼────────┼───────────────┼─────────╢
+║ 174.218.142.27 │ 1      │ Lawrenceville │ Georgia ║
+╟────────────────┼────────┼───────────────┼─────────╢
+║ 107.77.233.225 │ 18     │               │ Georgia ║
+╟────────────────┼────────┼───────────────┼─────────╢
+║ 205.201.132.14 │ 42     │ Woodstock     │ Georgia ║
+╟────────────────┼────────┼───────────────┼─────────╢
+║ 192.3.160.15   │ 4      │ Douglas       │ Georgia ║
+╚════════════════╧════════╧═══════════════╧═════════╝
+
+```
+
+
 
 Installation
 ------------
@@ -91,7 +96,7 @@ $query->all();
 
 Tokens/behavior:
 -----
-Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is currently case insensitive since it was written with `ILIKE`.  Future version will be more ecumenical, and detect PostgreSQL or other database that support this feature.
+Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is case insensitive as long as your database's `LIKE` operator is.  PostgreSQL will use `ILIKE`.  
 
 ##### Conjunctives:
 
@@ -117,3 +122,10 @@ Phrase, no wildcards: single quotes.  The term will not be evaluated for * or _,
 
 ##### Examples
 
+
+
+##### Acknowledgements
+
+This project was built by heavily modifying the excellent "[Search Query Parser](https://github.com/pimcore/search-query-parser)" project.  I de-abstracted the token structure and modified the parser class to better fit my needs.  Their licsence file should be found at the root of this project.
+
+Both projects are made possible by the amazing and lightning quick [lexer library](https://github.com/nikic/Phlexy) by Nikita Popov of Berlin.  It's work reading his [article on the subject](http://nikic.github.io/2011/10/23/Improving-lexing-performance-in-PHP.html).

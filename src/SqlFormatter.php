@@ -5,6 +5,8 @@ namespace johnsnook\parsel;
 /**
  * SQL Formatter is a collection of utilities for debugging SQL queries.
  * It includes methods for formatting, syntax highlighting, removing comments, etc.
+ * It's been heavily modified from the original by pimcore
+ * @see https://github.com/pimcore/search-query-parser
  *
  * @package    SqlFormatter
  * @author     Jeremy Dorn <jeremy@jeremydorn.com>

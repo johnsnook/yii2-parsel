@@ -1,9 +1,17 @@
 <?php
 
-//
-
 namespace johnsnook\parsel;
 
+/**
+ * This file is part of the Yii2 extension module, yii2-parsel.
+ * It's been heavily modified from the original by pimcore
+ * @see https://github.com/pimcore/search-query-parser
+ *
+ * @author John Snook
+ * @date 2018-07-28
+ * @license https://github.com/johnsnook/yii2-parsel/LICENSE
+ * @copyright 2018 John Snook Consulting
+ */
 use Phlexy\Lexer as PhlexyLexer;
 use Phlexy\LexerDataGenerator;
 use Phlexy\LexerFactory\Stateless\UsingPregReplace;
@@ -31,15 +39,15 @@ class Lexer {
      */
     protected function getDefaultDefinition() { #: array
         return [
-            '\(' => Tokens::T_BRACE_OPEN,
-            '\)' => Tokens::T_BRACE_CLOSE,
-            '(AND|OR)' => Tokens::T_KEYWORD,
-            '-' => Tokens::T_NEGATION,
-            '=' => Tokens::T_FULL_MATCH,
-            '"[^"]+"' => Tokens::T_TERM_QUOTED,
-            "'[^']+'" => Tokens::T_TERM_QUOTED_SINGLE,
-            '[^\s!\(\)]+' => Tokens::T_TERM,
-            '\s+' => Tokens::T_WHITESPACE,
+            '\(' => Tokens::BRACE_OPEN,
+            '\)' => Tokens::BRACE_CLOSE,
+            '(AND|OR)' => Tokens::KEYWORD,
+            '-' => Tokens::NEGATION,
+            '=' => Tokens::FULL_MATCH,
+            '"[^"]+"' => Tokens::TERM_QUOTED,
+            "'[^']+'" => Tokens::TERM_QUOTED_SINGLE,
+            '[^\s!\(\)]+' => Tokens::TERM,
+            '\s+' => Tokens::WHITESPACE,
         ];
     }
 
@@ -67,7 +75,7 @@ class Lexer {
 
         // ignore whitespace
         $tokens = array_filter($tokens, function ($token) {
-            return $token[0] !== Tokens::T_WHITESPACE;
+            return $token[0] !== Tokens::WHITESPACE;
         });
 
         // transform arrays into token objects

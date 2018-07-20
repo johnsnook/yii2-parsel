@@ -1,36 +1,78 @@
 <?php
 
 /**
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of the Yii2 extension module, yii2-parsel
+ * It's been heavily modified from the original by pimcore
+ * @see https://github.com/pimcore/search-query-parser
+ *
+ * @author John Snook
+ * @date 2018-07-28
+ * @license https://github.com/johnsnook/yii2-parsel/LICENSE
+ * @copyright 2018 John Snook Consulting
  */
 
 namespace johnsnook\parsel;
 
 use yii\db\Query;
 use yii\base\InvalidConfigException;
+use johnsnook\parsel\ParserException;
 
+/**
+ * The main class for this extension.  The main method is {{build}}.
+ */
 class ParselQuery extends \yii\base\BaseObject {
 
     /**
+     * @var string The case insensitive database operator to use.
+     */
+    private $like;
+    private $lastError;
+
+    /**
+     * {@inheritdoc}
+     * Set which fuzzy database operator to use.  My favorite, postgresql uses
+     * ILIKE, most others just use LIKE.
+     * @todo figure out what all the other databases use.  I only checked a few.
+     */
+    public function init() {
+        parent::init();
+        $this->like = (\Yii::$app->db->getDriverName() === 'pgsql' ? 'ILIKE' : 'LIKE');
+    }
+
+    /**
+     * The main event.  Takes a database query, a user entered query and an
+     * optional list of fields to search and returns the query with all the
+     * where clauses and sub-queries ready for use in an \yii\data\ActiveDataProvider.
      *
      * @param yii\db\Query $query The database query we'll be adding to
-     * @param string $userSearch The search string entered by the user
-     * @param array $fields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searcable fields in table.
+     * @param string|array $userSearch The search string entered by the user, or the array of sub-query parts
+     * @param array|null $fields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
      * @return yii\db\Query The transformed database query.
      */
     public static function build($query, $userSearch, $fields = null) {
+        /** If things go tits up, return the unmodified original. */
+        $pQuery = clone $query;
         if (is_null($fields)) {
-            $fields = self::fields($query);
+            $fields = self::fields($pQuery);
         }
 
-        /** This allows us to use this function recursively */
+        /**
+         * This allows us to use this function recursively.  If its a string,
+         * then this is our first pass.  If it's an array, we've recursed
+         */
         if (gettype($userSearch) !== 'array') {
             if (empty($userSearch)) {
+                return $pQuery;
+            }
+            try {
+                $queryParts = self::parseQuery($userSearch);
+            } catch (ParserException $pe) {
+                /**
+                 * Welp, something is borked.  Set the errormessage and bounce
+                 */
+                $this->lastError = $pe->message;
                 return $query;
             }
-            $queryParts = self::parseQuery($userSearch);
         } else {
             $queryParts = $userSearch;
         }
@@ -44,9 +86,9 @@ class ParselQuery extends \yii\base\BaseObject {
                  */
                 case "term":
                     $where = ['or'];
-                    $value = self::prepareSample($queryPart['value'], $queryPart['fuzzy']);
+                    $value = self::prepareTermValue($queryPart);
                     foreach ($fields as $field) {
-                        $where[] = ["ilike", $field, $value, false]; //{$neg}
+                        $where[] = [$this->like, $field, $value, false]; //{$neg}
                     }
 
                     /** Ties a not() around the condition(s) */
@@ -54,9 +96,9 @@ class ParselQuery extends \yii\base\BaseObject {
                         $where = ['not', $where];
                     }
                     if ($conjunction === 'AND') {
-                        $query->andWhere($where);
+                        $pQuery->andWhere($where);
                     } elseif ($conjunction === 'OR') {
-                        $query->orWhere($where);
+                        $pQuery->orWhere($where);
                     }
                     break;
                 /**
@@ -65,18 +107,17 @@ class ParselQuery extends \yii\base\BaseObject {
                  */
                 case "query":
                     $subQuery = new Query;
-                    $pk = self::primaryKey($query);
-                    $subQuery->from($query->from)->select($pk);
+                    $pk = self::primaryKey($pQuery);
+                    $subQuery->from($pQuery->from)->select($pk);
                     $subQuery = self::build($subQuery, $queryPart['items'], $fields);
-                    //self::dumpSql($subQuery);
 
                     /** Ties a not() around the condition(s) */
                     $neg = $queryPart['negated'] ? 'NOT ' : '';
                     $where = ["{$neg}IN", $pk, $subQuery];
                     if ($conjunction === 'AND') {
-                        $query->andWhere($where);
+                        $pQuery->andWhere($where);
                     } elseif ($conjunction === 'OR') {
-                        $query->orWhere($where);
+                        $pQuery->orWhere($where);
                     }
                     break;
                 /** We hold on to the AND/OR for the next term/subquery */
@@ -85,30 +126,52 @@ class ParselQuery extends \yii\base\BaseObject {
                     break;
             }
         }
-        return $query;
+        return $pQuery;
     }
 
-    public static function prepareSample($value, $isFuzzy) {
-        $value = str_replace(['*', '?'], ['%', '_'], $value);
-        if ($isFuzzy) {
+    /**
+     * Based on the metadata, get the term ready for a SQL statement
+     *
+     * @param array $term
+     * @return string The modified value
+     */
+    public static function prepareTermValue($term) {
+        $term = (object) $term;
+
+        if ($term->isFuzzy) {
+            $value = str_replace(['*', '?'], ['%', '_'], $term->value);
             $split = str_split($value);
+            /**
+             * this part is just to make sure we don't end up with double
+             * wildcards at the beginning or end of our term
+             */
             if ($split[strlen($value) - 1] !== '%') {
                 $value .= '%';
             }
             if ($split[0] !== '%') {
                 $value = '%' . $value;
             }
-            echo "$value strlen(\$value) = " . strlen($value) . PHP_EOL;
+        } elseif ($term->quoted === Parser::QUOTE_SINGLE) {
+            /** single quote terms are literal, so escape any wildcard chars */
+            $value = str_replace('%', '\%', str_replace('_', '\_', $term->value));
         } else {
             $value = '%' . $value . '%';
         }
         return $value;
     }
 
+    /**
+     * If fields are specified in the Query::select property, use those.  If not,
+     * get introspective and use the fields in this table that are string types.
+     *
+     * @todo figure out ecumenical way to add other types, eg dates, numbers, json
+     *
+     * @param yii\db\Query $query
+     * @return array The list of fields
+     * @throws InvalidConfigException
+     */
     public static function fields($query) {
         $return = [];
-        //$modelClass = $query->tablesUsedInFrom;
-        dump($query->tablesUsedInFrom);
         foreach ($query->tablesUsedInFrom as $alias => $tableName) {
             $fields = (is_null($query->select) ? '*' : $query->select);
             if ($meta = \Yii::$app->db->schema->getTableSchema($tableName)) {
@@ -127,6 +190,13 @@ class ParselQuery extends \yii\base\BaseObject {
         return $return;
     }
 
+    /**
+     * Figure out the primary key for use in sub-queries.
+     *
+     * @param yii\db\Query $query
+     * @return string
+     * @throws InvalidConfigException
+     */
     public static function primaryKey($query) {
         $return = [];
         foreach ($query->tablesUsedInFrom as $alias => $tableName) {
@@ -134,10 +204,11 @@ class ParselQuery extends \yii\base\BaseObject {
             if ($meta = \Yii::$app->db->schema->getTableSchema($tableName)) {
                 foreach ($meta->columns as $col) {
                     if ($col->isPrimaryKey) {
-                        return $col->name;
+                        return "{$alias}.{$col->name}";
                     }
                 }
             } else {
+                /** if we didn't find a primary key in the first table, complain */
                 throw new InvalidConfigException("Table: $tableName not found.");
             }
         }
@@ -153,14 +224,10 @@ class ParselQuery extends \yii\base\BaseObject {
     private static function parseQuery($queryString) {
         $lexer = new Lexer();
         $tokens = $lexer->lex($queryString);
-        //dump($tokens);
+//dump($tokens);
         $parser = new Parser();
 //        return $parser->parse($lexer->lex($queryString))->toArray();
         return $parser->parse($tokens);
-    }
-
-    private static function dumpSql($queryObj) {
-        echo SqlFormatter::format($queryObj->createCommand()->getRawSql()) . PHP_EOL;
     }
 
 }

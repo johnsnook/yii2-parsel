@@ -1,18 +1,29 @@
 <?php
 
+/**
+ * This file is part of the Yii2 extension module, yii2-parsel
+ * It's been heavily modified from the original by pimcore
+ * @see https://github.com/pimcore/search-query-parser
+ *
+ * @author John Snook
+ * @date 2018-07-28
+ * @license https://github.com/johnsnook/yii2-parsel/LICENSE
+ * @copyright 2018 John Snook Consulting
+ */
+
 namespace johnsnook\parsel;
 
 final class Tokens {
 
-    const T_WHITESPACE = 0;
-    const T_BRACE_OPEN = 1;
-    const T_BRACE_CLOSE = 2;
-    const T_KEYWORD = 3;
-    const T_NEGATION = 4;
-    const T_TERM = 5;
-    const T_TERM_QUOTED = 6;
-    const T_TERM_QUOTED_SINGLE = 7;
-    const T_FULL_MATCH = 8;
+    const WHITESPACE = 0;
+    const BRACE_OPEN = 1;
+    const BRACE_CLOSE = 2;
+    const KEYWORD = 3;
+    const NEGATION = 4;
+    const TERM = 5;
+    const TERM_QUOTED = 6;
+    const TERM_QUOTED_SINGLE = 7;
+    const FULL_MATCH = 8;
 
     /**
      * Get a token name from its value
@@ -41,9 +52,9 @@ final class Tokens {
 
         if (null === $termTokens) {
             $termTokens = [
-                self::T_TERM,
-                self::T_TERM_QUOTED,
-                self::T_TERM_QUOTED_SINGLE
+                self::TERM,
+                self::TERM_QUOTED,
+                self::TERM_QUOTED_SINGLE
             ];
         }
 
