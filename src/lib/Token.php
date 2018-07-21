@@ -13,7 +13,7 @@
 
 namespace johnsnook\parsel\lib;
 
-final class Token {
+final class Token extends \yii\base\BaseObject {
 
     /**
      * @var int

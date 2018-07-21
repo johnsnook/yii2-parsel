@@ -27,7 +27,8 @@ class ParselQuery {
     /**
      * @var string The message when a query can't be parsed.
      */
-    private $lastError;
+    public static $lastError;
+    private static $tokens;
 
     /**
      * The main event.  Takes a database query, a user entered query and an
@@ -40,6 +41,7 @@ class ParselQuery {
      * @return yii\db\Query The transformed database query.
      */
     public static function build($query, $userSearch, $fields = null) {
+        self::$lastError = null;
         $like = self::fuzzyOperator();
         /** If things go tits up, return the unmodified original. */
         $pQuery = clone $query;
@@ -61,7 +63,7 @@ class ParselQuery {
                 /**
                  * Welp, something is borked.  Set the errormessage and bounce
                  */
-                self::$lastError = $pe->message;
+                self::$lastError = $pe->getMessage();
                 return $query;
             }
         } else {
@@ -69,7 +71,11 @@ class ParselQuery {
         }
         $conjunction = 'AND';
         foreach ($queryParts as $queryPart) {
-
+            if (!isset($queryPart['type'])) {
+                dump($queryParts);
+                dump(self::$tokens);
+                die();
+            }
             switch ($queryPart['type']) {
                 /**
                  * This is the search term we're going to compare against the
@@ -158,6 +164,8 @@ class ParselQuery {
         } elseif ($term->quoted === Parser::QUOTE_SINGLE) {
             /** single quote terms are literal, so escape any wildcard chars */
             $value = str_replace('%', '\%', str_replace('_', '\_', $term->value));
+        } elseif ($term->fullMatch) {
+            $value = $term->value;
         } else {
             $value = '%' . $term->value . '%';
         }
@@ -227,11 +235,11 @@ class ParselQuery {
      */
     private static function parseQuery($queryString) {
         $lexer = new Lexer();
-        $tokens = $lexer->lex($queryString);
+        self::$tokens = $lexer->lex($queryString);
 //dump($tokens);
         $parser = new Parser();
 //        return $parser->parse($lexer->lex($queryString))->toArray();
-        return $parser->parse($tokens);
+        return $parser->parse(self::$tokens);
     }
 
 }

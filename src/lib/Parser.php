@@ -25,7 +25,7 @@ class Parser {
      * @return array An array representing the terms, conjunctions and subqueries and their properties
      */
     public static function parse($tokens) {
-
+        self::sanityCheck($tokens);
         /** @var Query[] $queryStack */
         $queryStack = [];
         $currentQuery = [];
@@ -109,6 +109,18 @@ class Parser {
             $previousToken = $token;
         }
         return $currentQuery;
+    }
+
+    private static function sanityCheck($tokens) {
+        /** check to see if all braces are balanced */
+        $left = $right = 0;
+        foreach ($tokens as $token) {
+            $left += $token->name === 'BRACE_OPEN' ? 1 : 0;
+            $right += $token->name === 'BRACE_CLOSE' ? 1 : 0;
+        }
+        if ($left !== $right) {
+            throw new ParserException("The query has $left left braces and $right right braces.");
+        }
     }
 
     /**
