@@ -83,8 +83,26 @@ class ParselQuery {
                  */
                 case "term":
                     $where = ['or'];
+
+                    /**
+                     * allow the user to specify a single field.
+                     * 1) Copy the fields array to fieldlist
+                     * 2) See if a colon is in the term
+                     * 3) Split the term and check if the left is in the fieldlist
+                     * 4) set the value to the right side of the original term
+                     * 5) set the fieldlist to the single field specified in term
+                     */
+                    $fieldlist = $fields;
+                    if (strpos($queryPart['value'], ':') !== false) {
+                        $fieldVal = explode(':', $queryPart['value']);
+                        if (in_array($fieldVal[0], $fields)) {
+                            $fieldlist = [$fieldVal[0]];
+                            $queryPart['value'] = $fieldVal[1];
+                        }
+                    }
+
                     $value = self::prepareTermValue($queryPart);
-                    foreach ($fields as $field) {
+                    foreach ($fieldlist as $field) {
                         if ($queryPart['fullMatch']) {
                             $where[] = [$field => $value]; //{$neg}
                         } else {
