@@ -39,6 +39,7 @@ WHERE
     )
   )
 ```
+Example results:
 
 | Ip             | Visits | City          | Region  |
 | -------------- | ------ | ------------- | ------- |
@@ -77,9 +78,11 @@ Once the extension is installed, simply use it in your code by  :
 
 ```php
 $userQuery = 'good AND plenty -licorice';
-$query = Post::find()->select('name', 'description', 'content');
-$query = \johnsnook\parsel\ParselQuery::build($query, $userQuery);
-$query->all();
+$parsel = new ParselQuery([
+            'userQuery' => $this->userQuery,
+            'dbQuery' => Script::find()
+        ]);
+$parsel->dbQuery->all();
 ```
 
 ## Tokens/behavior:
@@ -94,25 +97,22 @@ Fields to be search must be either text, varchar or char currently.  Future vers
 
 #### Operators:
 
-Negation: '-'.  The user query "smart pretty -judgmental" parses to "smart AND pretty AND NOT judgmental"
+| Operator | Type               | Description                                                  |
+| -------- | ------------------ | ------------------------------------------------------------ |
+| -        | Negation           | The user query "smart pretty -judgmental" parses to "smart AND pretty AND NOT judgmental" |
+| ()       | Sub-query          | Allows grouping of terms .  The user query "-crazy (smart AND pretty)" parses to "NOT crazy AND (smart AND pretty)" |
+| *        | Wildcard           | Fuzzy matches. "butt\*" matches butt, buttery, buttered etc. |
+| _        | Character wildcard | Matches one character.  "boo\_" matches boot, book, bool, boon, etc. |
+| =        | Full match         | Entire fields must be equal to the term.  "=georgia" only matches where one or more fields is exactly equal to the search term.  The search term will NOT be bracketed with %, but wildcards can still be used. |
+| ""       | Double quotes      | Phrase. '"Super fun"' searches for the full phrase, space include.  Wild cards, negation and exact match operators all work within the phrase. |
+| ''       | Single quotes      | Phrase, no wildcards.  The term will not be evaluated for * or _, but will be wrapped in wildcards.  If a % or _ is in the term, it will be escaped.  'P%on*' becomes '%P\%on\*%'. |
+| :        | Field              | Specify the field to search.  'name:jo*' will search the name field for 'jo\*.' If no field name matches, all fields will be searched for 'name:jo\*' |
 
-Sub-query : '()', Allows grouping of terms .  The user query "-crazy (smart AND pretty)" parses to "NOT crazy AND (smart AND pretty)".
 
-Wildcard: '*', fuzzy matches.  "butt\*" matches butt, buttery, buttered etc.
-
-Character wildcard: '_', matches one character.  "boo\_" matches boot, book, bool, boon, etc.
-
-Full match: '=', field match.  Entire fields must be equal to the term.  "=georgia" only matches where one or more fields is exactly equal to the search term.  The search term will NOT be bracketed with %, but wildcards can still be used.
-
-Phrase: double quotes.  '"Super fun"' searches for the full phrase, space include.  Wild cards, negation and exact match operators all work within the phrase.
-
-Phrase, no wildcards: single quotes.  The term will not be evaluated for * or _, but will be wrapped in wildcards.  If a % or _ is in the term, it will be escaped.  'P%on*' becomes '%P\%on\*%'.
-
-Field: ':', Specify the field to search.  'name:jo*' will search the name field for 'jo\*.' If no field name matches, all fields will be searched for 'name:jo\*'
 
 #### Examples
 
-
+See files in /examples.
 
 #### Additional Reading
 

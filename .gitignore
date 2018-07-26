@@ -1,6 +1,9 @@
 # remove the following ignores for your project
 /app/constants.php
 
+#testing seinfeld stuff
+/src/models
+
 # symfony default
 /.web-server-pid
 /app/config/parameters.yml
