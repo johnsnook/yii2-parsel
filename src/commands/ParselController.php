@@ -21,6 +21,9 @@ use yii\helpers\Console as C;
  */
 class ParselController extends \yii\console\Controller {
 
+    /**
+     * You need help, man.
+     */
     public function actionIndex() {
         $this->help();
     }
@@ -122,7 +125,7 @@ class ParselController extends \yii\console\Controller {
             ]);
             if (strpos($flags, 'm') !== false) {
                 $rows = [];
-                $fmt = '%s.%R%f ms';
+                $fmt = '%r%f ms';
                 for ($i = 1; $i < count($parsel->profile); $i++) {
                     $key1 = array_keys($parsel->profile[$i - 1])[0];
                     $t1 = array_values($parsel->profile[$i - 1])[0];
