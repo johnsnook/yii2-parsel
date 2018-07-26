@@ -16,66 +16,95 @@ namespace johnsnook\parsel;
 use johnsnook\parsel\lib\Lexer;
 use johnsnook\parsel\lib\Parser;
 use johnsnook\parsel\lib\ParserException;
+use johnsnook\parsel\lib\SqlFormatter;
 use yii\db\Query;
 use yii\base\InvalidConfigException;
 
 /**
  * The main class for this extension.  The main method is {{build}}.
+ * @property-read string $lastError The message when a query can't be parsed.
+ * @property-read array $tokens The tokens created by the lexer.
+ * @property-read array $queryParts The query parts created by the parser.
+ * @property yii\db\Query $dbQuery The database query we'll be adding to
+ * @property string|array $userQuery The search string entered by the user, or the array of sub-query parts
+ * @property array|null $searchFields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
  */
-class ParselQuery {
+class ParselQuery extends \yii\base\BaseObject {
+
+    public $profile = [];
 
     /**
      * @var string The message when a query can't be parsed.
      */
-    public static $lastError;
-    private static $tokens;
+    private $lastError;
+
+    /**
+     * @var yii\db\Query  The database query we'll be adding to
+     */
+    private $dbQuery;
+
+    /**
+     * @var string|array $userQuery The search string entered by the user, or the array of sub-query parts
+     */
+    private $userQuery;
+
+    /**
+     * @var array|null The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
+     */
+    private $searchFields;
 
     /**
      * The main event.  Takes a database query, a user entered query and an
      * optional list of fields to search and returns the query with all the
      * where clauses and sub-queries ready for use in an \yii\data\ActiveDataProvider.
      *
-     * @param yii\db\Query $query The database query we'll be adding to
-     * @param string|array $userSearch The search string entered by the user, or the array of sub-query parts
+     * @param yii\db\Query $dbQuery The database query we'll be adding to
+     * @param string|array $userQuery The search string entered by the user, or the array of sub-query parts
      * @param array|null $fields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
      * @return yii\db\Query The transformed database query.
      */
-    public static function build($query, $userSearch, $fields = null) {
-        self::$lastError = null;
+    protected function processQuery($dbQuery, $queryParts, $fields = null) {
+//        if (empty($this->userQuery)) {
+//            return;
+//        }
+//        if (is_null($userQuery)) {
+//            $userQuery = $this->userQuery;
+//        }
+
+        $this->lastError = false;
         $like = self::fuzzyOperator();
         /** If things go tits up, return the unmodified original. */
-        $pQuery = clone $query;
+        $pQuery = clone $dbQuery;
         if (is_null($fields)) {
-            $fields = self::fields($pQuery);
+            if (is_null($pQuery->select)) {
+                $fields = self::fields($pQuery);
+            } else {
+                $fields = $pQuery->select;
+            }
         }
 
         /**
          * This allows us to use this function recursively.  If its a string,
          * then this is our first pass.  If it's an array, we've recursed
          */
-        if (gettype($userSearch) !== 'array') {
-            if (empty($userSearch)) {
-                return $pQuery;
-            }
-            try {
-                $queryParts = self::parseQuery($userSearch);
-            } catch (ParserException $pe) {
-                /**
-                 * Welp, something is borked.  Set the errormessage and bounce
-                 */
-                self::$lastError = $pe->getMessage();
-                return $query;
-            }
-        } else {
-            $queryParts = $userSearch;
-        }
+//        if (gettype($userQuery) !== 'array') {
+//            if (empty($userQuery)) {
+//                return $pQuery;
+//            }
+//            try {
+//                $queryParts = $this->queryParts;
+//            } catch (ParserException $pe) {
+//                /**
+//                 * Welp, something is borked.  Set the errormessage and bounce
+//                 */
+//                $this->lastError = $pe->getMessage();
+//                return $dbQuery;
+//            }
+//        } else {
+//            $queryParts = $userQuery;
+//        }
         $conjunction = 'AND';
         foreach ($queryParts as $queryPart) {
-            if (!isset($queryPart['type'])) {
-                dump($queryParts);
-                dump(self::$tokens);
-                die();
-            }
             switch ($queryPart['type']) {
                 /**
                  * This is the search term we're going to compare against the
@@ -95,8 +124,14 @@ class ParselQuery {
                     $fieldlist = $fields;
                     if (strpos($queryPart['value'], ':') !== false) {
                         $fieldVal = explode(':', $queryPart['value']);
-                        if (in_array($fieldVal[0], $fields)) {
-                            $fieldlist = [$fieldVal[0]];
+                        $fieldExpression = null;
+                        if (in_array($fieldVal[0], array_keys($fields), true)) {
+                            $fieldExpression = $fields[$fieldVal[0]];
+                        } elseif (in_array($fieldVal[0], array_values($fields), true)) {
+                            $fieldExpression = $fieldVal[0];
+                        }
+                        if (!is_null($fieldExpression)) {
+                            $fieldlist = [$fieldExpression];
                             $queryPart['value'] = $fieldVal[1];
                         }
                     }
@@ -125,14 +160,13 @@ class ParselQuery {
                  * tables(s) but only returning the primary key.
                  */
                 case "query":
-                    $subQuery = new Query;
+                    $subQuery = clone $dbQuery;
                     $pk = self::primaryKey($pQuery);
-                    $subQuery->from($pQuery->from)->select($pk);
-                    $subQuery = self::build($subQuery, $queryPart['items'], $fields);
-
+                    $subQuery->select($pk);
+                    $subQuery = $this->processQuery($subQuery, $queryPart['items'], $fields);
                     /** Ties a not() around the condition(s) */
-                    $neg = $queryPart['negated'] ? 'NOT ' : '';
-                    $where = ["{$neg}IN", $pk, $subQuery];
+                    $not = $queryPart['negated'] ? 'NOT ' : '';
+                    $where = ["{$not}IN", $pk, $subQuery];
                     if ($conjunction === 'AND') {
                         $pQuery->andWhere($where);
                     } elseif ($conjunction === 'OR') {
@@ -149,11 +183,115 @@ class ParselQuery {
     }
 
     /**
+     * Begins the work of lexing, parsing and processing then returns the Query
+     *
+     * @return yii\db\Query
+     */
+    public function getDbQuery() {
+        $queryParts = $this->queryParts;
+        $this->profile[] = ["processQuery" => new \DateTime()];
+        return $this->processQuery($this->dbQuery, $queryParts, $this->searchFields);
+    }
+
+    /**
+     *
+     * @param yii\db\Query $val
+     */
+    public function setDbQuery($val) {
+        $this->dbQuery = $val;
+    }
+
+    /**
+     * Get the last error, if any
+     * @return string
+     */
+    public function getLastError() {
+        return $this->lastError;
+    }
+
+    /**
+     * Requests the tokens (lexing) then calls the parser and returns the array of
+     * query parts to process into a where clause
+     *
+     * @return array
+     */
+    public function getQueryParts() {
+        $parser = new Parser();
+        $tokens = $this->tokens;
+        $queryParts = [];
+        $this->profile[] = ["Parser parse" => new \DateTime()];
+        try {
+            $queryParts = $parser->parse($tokens);
+        } catch (ParserException $pe) {
+            /**
+             * Welp, something is borked.  Set the errormessage and bounce
+             */
+            $this->lastError = $pe->getMessage();
+        }
+        return $queryParts;
+    }
+
+    /**
+     * The list of fields to search
+     *
+     * @return array
+     */
+    public function getSearchFields() {
+        return $this->searchFields;
+    }
+
+    /**
+     * Assign the list of fields to search
+     *
+     * @param array $val
+     */
+    public function setSearchFields($val) {
+        $this->searchFields = $val;
+    }
+
+    /**
+     *
+     * @return string The sql string generated by ParselQuery. For debugging purposes
+     */
+    public function getSql() {
+        return SqlFormatter::format($this->getDbQuery()->createCommand()->getRawSql());
+    }
+
+    /**
+     * Discerns the lexemes of the users query string
+     *
+     * @return array
+     */
+    public function getTokens() {
+        $lexer = new Lexer();
+        $this->profile[] = ["Lexer lex" => new \DateTime()];
+        return $lexer->lex($this->userQuery);
+    }
+
+    /**
+     * The users query string
+     *
+     * @return string
+     */
+    public function getUserQuery() {
+        return $this->userQuery;
+    }
+
+    /**
+     * The users query string
+     *
+     * @param string $val
+     */
+    public function setUserQuery($val) {
+        $this->userQuery = $val;
+    }
+
+    /**
      * Set which fuzzy database operator to use.  My favorite, postgresql uses
      * ILIKE, most others just use LIKE.
      * @todo figure out what all the other databases use.  I only checked a few.
      */
-    private static function fuzzyOperator() {
+    protected static function fuzzyOperator() {
         return (\Yii::$app->db->getDriverName() === 'pgsql' ? 'ILIKE' : 'LIKE');
     }
 
@@ -163,7 +301,7 @@ class ParselQuery {
      * @param array $term
      * @return string The modified value
      */
-    public static function prepareTermValue($term) {
+    private static function prepareTermValue($term) {
         $term = (object) $term;
 
         if ($term->fuzzy) {
@@ -196,14 +334,14 @@ class ParselQuery {
      *
      * @todo figure out ecumenical way to add other types, eg dates, numbers, json
      *
-     * @param yii\db\Query $query
+     * @param yii\db\Query $dbQuery
      * @return array The list of fields
      * @throws InvalidConfigException
      */
-    public static function fields($query) {
+    private static function fields($dbQuery) {
         $return = [];
-        foreach ($query->tablesUsedInFrom as $alias => $tableName) {
-            $fields = (is_null($query->select) ? '*' : $query->select);
+        foreach ($dbQuery->tablesUsedInFrom as $alias => $tableName) {
+            $fields = (is_null($dbQuery->select) ? '*' : $dbQuery->select);
             if ($meta = \Yii::$app->db->schema->getTableSchema($tableName)) {
                 foreach ($meta->columns as $col) {
                     if ($fields === '*' || in_array($col->name, $fields)) {
@@ -223,14 +361,13 @@ class ParselQuery {
     /**
      * Figure out the primary key for use in sub-queries.
      *
-     * @param yii\db\Query $query
+     * @param yii\db\Query $dbQuery
      * @return string
      * @throws InvalidConfigException
      */
-    public static function primaryKey($query) {
-        $return = [];
-        foreach ($query->tablesUsedInFrom as $alias => $tableName) {
-            $fields = (is_null($query->select) ? '*' : $query->select);
+    private static function primaryKey($dbQuery) {
+
+        foreach ($dbQuery->tablesUsedInFrom as $alias => $tableName) {
             if ($meta = \Yii::$app->db->schema->getTableSchema($tableName)) {
                 foreach ($meta->columns as $col) {
                     if ($col->isPrimaryKey) {
@@ -242,22 +379,8 @@ class ParselQuery {
                 throw new InvalidConfigException("Table: $tableName not found.");
             }
         }
-        throw new InvalidConfigException("Table: $tableName doesn't have a primary key defined, which is required for subquerys.");
-    }
-
-    /**
-     * Ties together the lexer & parser and returns an array representing the
-     * query
-     * @param string $queryString
-     * @return array
-     */
-    private static function parseQuery($queryString) {
-        $lexer = new Lexer();
-        self::$tokens = $lexer->lex($queryString);
-//dump($tokens);
-        $parser = new Parser();
-//        return $parser->parse($lexer->lex($queryString))->toArray();
-        return $parser->parse(self::$tokens);
+        $tables = implode(',', $dbQuery->tablesUsedInFrom);
+        throw new InvalidConfigException("Table(s): $tables doesn't have a primary key defined, which is required for subquerys.");
     }
 
 }

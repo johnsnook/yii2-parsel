@@ -1,5 +1,5 @@
-Yii2 Parsel
-==================
+# Yii2 Parsel
+
 Allows developers to provide a boolean search query interface, similar to Google or Sphinx search or other full-text search (FTS) engines.
 
 Turns a user query like '`georgia -(atlanta or decatur)`' into '`georgia AND NOT (atlanta or decatur)`' which is then turn into the follow SQL:
@@ -61,8 +61,7 @@ WHERE
 
 
 
-Installation
-------------
+## Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
@@ -80,8 +79,7 @@ or add
 
 to the require section of your `composer.json` file.
 
-Usage
------
+## Usage
 
 > *"Look, I didn't know I could speak Parseltongue! What else don't I know about myself? Look. Maybe you can do something, even something horrible and not know you did it."*
 
@@ -94,8 +92,8 @@ $query = \johnsnook\parsel\ParselQuery::build($query, $userQuery);
 $query->all();
 ```
 
-Tokens/behavior:
------
+## Tokens/behavior:
+
 Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is case insensitive as long as your database's `LIKE` operator is.  PostgreSQL will use `ILIKE`.  
 
 #### Conjunctives:
@@ -120,9 +118,23 @@ Phrase: double quotes.  '"Super fun"' searches for the full phrase, space includ
 
 Phrase, no wildcards: single quotes.  The term will not be evaluated for * or _, but will be wrapped in wildcards.  If a % or _ is in the term, it will be escaped.  'P%on*' becomes '%P\%on\*%'.
 
+Field: ':', Specify the field to search.  'name:jo*' will search the name field for 'jo\*.' If no field name matches, all fields will be searched for 'name:jo\*'
+
 #### Examples
 
 
+
+#### Additional Reading
+
+**PostgreSQL**
+
+[Faster PostgreSQL Searches with Trigrams](http://blog.scoutapp.com/articles/2016/07/12/how-to-make-text-searches-in-postgresql-faster-with-trigram-similarity)	
+
+[Optimizing databases for fuzzy searching](https://stackoverflow.com/a/13452528) 
+
+**MySQL**
+
+[Performance analysis of MySQL's FULLTEXT indexes and LIKE queries for full text search](https://makandracards.com/makandra/12813-performance-analysis-of-mysql-s-fulltext-indexes-and-like-queries-for-full-text-search)
 
 ## Acknowledgements
 

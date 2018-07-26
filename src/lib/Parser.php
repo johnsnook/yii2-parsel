@@ -24,10 +24,9 @@ class Parser {
      *
      * @return array An array representing the terms, conjunctions and subqueries and their properties
      */
-    public static function parse($tokens) {
+    public function parse($tokens) {
         self::sanityCheck($tokens);
         /** @var Query[] $queryStack */
-        $queryStack = [];
         $currentQuery = [];
 
         /** @var Token $previousToken */
@@ -36,27 +35,21 @@ class Parser {
         for ($i = 0; $i < count($tokens); $i++) {
             $token = $tokens[$i];
 
-            if (!$token instanceof Token) {
-                throw new \InvalidArgumentException(sprintf(
-                        'Token at index %d must be of type Token, "%s" given', $i, is_object($token) ? get_class($token) : gettype($token)
-                ));
-            }
             // brace open/close - sub-queries
             if ($token->isTypeOf(Tokens::BRACE_OPEN)) {
-                array_push($queryStack, $currentQuery);
-
                 $negated = self::isNegated($i, $tokens);
-                $currentQuery = ['type' => 'query', 'negated' => $negated, 'items' => []];
-            }
+                $currentQuery = self::conjunctionJunction($currentQuery);
+                $braceClosePos = self::findMatchPos($tokens, $i);
+                $subwayTokens = array_slice($tokens, $i + 1, $braceClosePos - $i - 1);
 
-            if ($token->isTypeOf(Tokens::BRACE_CLOSE)) {
-                if (count($queryStack) === 0) {
-                    throw new ParserException('Can\'t close sub query as query stack is empty');
-                }
+                $currentQuery[] = [
+                    'type' => 'query',
+                    'negated' => $negated,
+                    'items' => $this->parse($subwayTokens)
+                ];
+                $i = $braceClosePos;
 
-                $closingQuery = $currentQuery;
-                $currentQuery = array_pop($queryStack);
-                $currentQuery[] = $closingQuery;
+                continue;
             }
 
             // terms (the actual values we're looking for)
@@ -71,42 +64,42 @@ class Parser {
                     'quoted' => self::quoteType($token)
                 ];
 
-                // add an AND/OR before inserting the term if the last part was no keyword
-                $lastPart = self::getLastPart($currentQuery);
+                $currentQuery = self::conjunctionJunction($currentQuery);
+                $currentQuery[] = $term;
+            } // terms
 
-                if (isset($lastPart['type']) && ($lastPart['type'] !== 'keyword')) {
-                    if (count($queryStack) > 0) {
-                        $currentQuery['items'][] = ['type' => 'keyword', 'value' => 'AND'];
-                    } else {
-                        $currentQuery[] = ['type' => 'keyword', 'value' => 'AND'];
-                    }
-                }
-
-                $lastPart = self::getLastPart($currentQuery);
-                if (isset($lastPart['type']) && ($lastPart['type'] !== 'keyword')) {
-                    throw new ParserException(sprintf(
-                            'Expected a keyword (AND/OR), but found a %s', $lastPart['type']
-                    ));
-                }
-                if (count($queryStack) > 0) {
-                    $currentQuery['items'][] = $term;
-                } else {
-                    $currentQuery[] = $term;
-                }
-            }
+            /** Keywords */
             if ($token->isTypeOf(Tokens::KEYWORD)) {
                 if ($previousToken && $previousToken->isTypeOf(Tokens::KEYWORD)) {
                     throw new ParserException(sprintf(
                             'Keyword can\'t be succeeded by another keyword (%s %s)', $previousToken->getContent(), $token->getContent()
                     ));
                 }
-                if (count($queryStack) > 0) {
-                    $currentQuery['items'][] = ['type' => 'keyword', 'value' => $token->getContent()];
-                } else {
-                    $currentQuery[] = ['type' => 'keyword', 'value' => $token->getContent()];
-                }
+                $currentQuery[] = ['type' => 'keyword', 'value' => strtoupper($token->getContent())];
             }
             $previousToken = $token;
+        }
+        return $currentQuery;
+    }
+
+    private static function findMatchPos($tokens, $i) {
+        $j = 0;
+        for ($i; $i <= count($tokens) + 1; $i++) {
+            $j += ($tokens[$i]->token === Tokens::BRACE_OPEN ? 1 : 0 );
+            if ($tokens[$i]->token === Tokens::BRACE_CLOSE) {
+                if (--$j < 1) {
+                    return $i;
+                }
+            }
+        }
+    }
+
+    private static function conjunctionJunction($currentQuery) {
+        // add an AND/OR before inserting the term if the last part was no keyword
+        $lastPart = self::getLastPart($currentQuery);
+
+        if (isset($lastPart['type']) && ($lastPart['type'] !== 'keyword')) {
+            $currentQuery[] = ['type' => 'keyword', 'value' => 'AND'];
         }
         return $currentQuery;
     }
@@ -246,10 +239,7 @@ class Parser {
      * @return PartInterface|null
      */
     private static function getLastPart($parts) {
-//        $my_arr[$keys[1]] = "not so much bling";
-
         if (!empty($parts)) {
-            //dump($parts);
             $keys = array_keys($parts);
             return $parts[$keys[count($keys) - 1]];
         }
