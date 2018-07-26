@@ -17,7 +17,6 @@ use johnsnook\parsel\lib\Lexer;
 use johnsnook\parsel\lib\Parser;
 use johnsnook\parsel\lib\ParserException;
 use johnsnook\parsel\lib\SqlFormatter;
-use yii\db\Query;
 use yii\base\InvalidConfigException;
 
 /**
@@ -59,17 +58,11 @@ class ParselQuery extends \yii\base\BaseObject {
      * where clauses and sub-queries ready for use in an \yii\data\ActiveDataProvider.
      *
      * @param yii\db\Query $dbQuery The database query we'll be adding to
-     * @param string|array $userQuery The search string entered by the user, or the array of sub-query parts
+     * @param array $queryParts The array of sub-query parts
      * @param array|null $fields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
      * @return yii\db\Query The transformed database query.
      */
     protected function processQuery($dbQuery, $queryParts, $fields = null) {
-//        if (empty($this->userQuery)) {
-//            return;
-//        }
-//        if (is_null($userQuery)) {
-//            $userQuery = $this->userQuery;
-//        }
 
         $this->lastError = false;
         $like = self::fuzzyOperator();
@@ -83,26 +76,6 @@ class ParselQuery extends \yii\base\BaseObject {
             }
         }
 
-        /**
-         * This allows us to use this function recursively.  If its a string,
-         * then this is our first pass.  If it's an array, we've recursed
-         */
-//        if (gettype($userQuery) !== 'array') {
-//            if (empty($userQuery)) {
-//                return $pQuery;
-//            }
-//            try {
-//                $queryParts = $this->queryParts;
-//            } catch (ParserException $pe) {
-//                /**
-//                 * Welp, something is borked.  Set the errormessage and bounce
-//                 */
-//                $this->lastError = $pe->getMessage();
-//                return $dbQuery;
-//            }
-//        } else {
-//            $queryParts = $userQuery;
-//        }
         $conjunction = 'AND';
         foreach ($queryParts as $queryPart) {
             switch ($queryPart['type']) {
@@ -296,7 +269,8 @@ class ParselQuery extends \yii\base\BaseObject {
     }
 
     /**
-     * Based on the metadata, get the term ready for a SQL statement
+     * Based on the metadata, get the term ready for a SQL statement.  Also
+     * replace user tokens with db tokens
      *
      * @param array $term
      * @return string The modified value
@@ -369,10 +343,8 @@ class ParselQuery extends \yii\base\BaseObject {
 
         foreach ($dbQuery->tablesUsedInFrom as $alias => $tableName) {
             if ($meta = \Yii::$app->db->schema->getTableSchema($tableName)) {
-                foreach ($meta->columns as $col) {
-                    if ($col->isPrimaryKey) {
-                        return "{$alias}.{$col->name}";
-                    }
+                if ($pk = $meta->primaryKey) {
+                    return "{$alias}.{$pk}";
                 }
             } else {
                 /** if we didn't find a primary key in the first table, complain */
