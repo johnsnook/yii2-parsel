@@ -112,7 +112,7 @@ Fields to be search must be either text, varchar or char currently.  Future vers
 
 #### Examples
 
-See files in /examples.
+See files in /examples.  If it's still up, you might also be able to play with an example [here](https://snooky.biz/parsel)
 
 #### Additional Reading
 
