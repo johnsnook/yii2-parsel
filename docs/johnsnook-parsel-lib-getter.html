@@ -14,10 +14,10 @@
 <body>
 
 <div class="wrap">
-    <nav id="w61" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w61-collapse"><span class="sr-only">Toggle navigation</span>
+    <nav id="w10" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w10-collapse"><span class="sr-only">Toggle navigation</span>
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
-<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Yii Framework 2.0 API Documentation</a></div><div id="w61-collapse" class="collapse navbar-collapse"><ul id="w62" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li></ul><div class="navbar-form navbar-left" role="search">
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Yii Framework 2.0 API Documentation</a></div><div id="w10-collapse" class="collapse navbar-collapse"><ul id="w11" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li></ul><div class="navbar-form navbar-left" role="search">
   <div class="form-group">
     <input id="searchbox" type="text" class="form-control" placeholder="Search">
   </div>
@@ -31,20 +31,14 @@
     
 <div class="row">
     <div class="col-md-3">
-                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-56" data-toggle="collapse" data-parent="#navigation">frontend\models <b class="caret"></b></a><div id="navigation-56" class="submenu panel-collapse collapse"><a class="list-group-item" href="./frontend-models-examplesearch.html">ExampleSearch</a></div>
-<a class="list-group-item" href="#navigation-57" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel <b class="caret"></b></a><div id="navigation-57" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-module.html">Module</a>
-<a class="list-group-item" href="./johnsnook-parsel-parselquery.html">ParselQuery</a></div>
-<a class="list-group-item" href="#navigation-58" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\commands <b class="caret"></b></a><div id="navigation-58" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-commands-parselcontroller.html">ParselController</a></div>
-<a class="list-group-item active" href="#navigation-59" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\lib <b class="caret"></b></a><div id="navigation-59" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./johnsnook-parsel-lib-getter.html">Getter</a>
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-8" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel <b class="caret"></b></a><div id="navigation-8" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-parselquery.html">ParselQuery</a></div>
+<a class="list-group-item active" href="#navigation-9" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\lib <b class="caret"></b></a><div id="navigation-9" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./johnsnook-parsel-lib-getter.html">Getter</a>
 <a class="list-group-item" href="./johnsnook-parsel-lib-lexer.html">Lexer</a>
 <a class="list-group-item" href="./johnsnook-parsel-lib-parser.html">Parser</a>
 <a class="list-group-item" href="./johnsnook-parsel-lib-parserexception.html">ParserException</a>
 <a class="list-group-item" href="./johnsnook-parsel-lib-sqlformatter.html">SqlFormatter</a>
 <a class="list-group-item" href="./johnsnook-parsel-lib-token.html">Token</a>
-<a class="list-group-item" href="./johnsnook-parsel-lib-tokens.html">Tokens</a></div>
-<a class="list-group-item" href="#navigation-60" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\models <b class="caret"></b></a><div id="navigation-60" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-models-episode.html">Episode</a>
-<a class="list-group-item" href="./johnsnook-parsel-models-script.html">Script</a>
-<a class="list-group-item" href="./johnsnook-parsel-models-scriptsearch.html">ScriptSearch</a></div></div>    </div>
+<a class="list-group-item" href="./johnsnook-parsel-lib-tokens.html">Tokens</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class johnsnook\parsel\lib\Getter</h1>
 <div class="top-nav">
@@ -117,7 +111,7 @@
         <p>Do not call this method directly as it is a PHP magic method that
 will be implicitly called when executing <code>$value = $object-&gt;property;</code>.</p>
 
-        <p>See also <span class="broken-link">\__set()</span>.</p>    </div>
+            </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">mixed</span> <strong><a href="johnsnook-parsel-lib-getter.html#__get()-detail">__get</a></strong> ( <span style="color: #0000BB">$name</span> )</td></tr>
@@ -135,13 +129,13 @@ will be implicitly called when executing <code>$value = $object-&gt;property;</c
                 </tr>
                                         <tr>
                   <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\johnsnook\parsel\lib\UnknownPropertyException</td>
+                  <td class="param-type-col">\yii\base\UnknownPropertyException</td>
                   <td class="param-desc-col"><p>if the property is not defined</p>
 </td>
                 </tr>
                             <tr>
                   <th class="param-name-col">throws</th>
-                  <td class="param-type-col">\johnsnook\parsel\lib\InvalidCallException</td>
+                  <td class="param-type-col">\yii\base\InvalidCallException</td>
                   <td class="param-desc-col"><p>if the property is write-only</p>
 </td>
                 </tr>
@@ -187,7 +181,7 @@ will be implicitly called when executing <code>$value = $object-&gt;property;</c
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 08 Aug 2018 20:53:02 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 08 Aug 2018 21:07:44 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

@@ -10,6 +10,9 @@
 
 namespace johnsnook\parsel\lib;
 
+use yii\base\InvalidCallException;
+use yii\base\UnknownPropertyException;
+
 class Getter {
 
     /**
@@ -21,7 +24,6 @@ class Getter {
      * @return mixed the property value
      * @throws UnknownPropertyException if the property is not defined
      * @throws InvalidCallException if the property is write-only
-     * @see __set()
      */
     public function __get($name) {
         $getter = 'get' . $name;

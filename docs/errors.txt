@@ -2,85 +2,8 @@ Array
 (
     [0] => Array
         (
-            [line] => 25
-            [file] => src/Module.php
-            [message] => Method bootstrap has no parent to inherit from in johnsnook\parsel\Module.
-        )
-
-    [1] => Array
-        (
-            [line] => 30
-            [file] => src/examples/ExampleSearch.php
-            [message] => Method rules has no parent to inherit from in frontend\models\ExampleSearch.
-        )
-
-    [2] => Array
-        (
-            [line] => 45
-            [file] => src/examples/ExampleSearch.php
-            [message] => Method scenarios has no parent to inherit from in frontend\models\ExampleSearch.
-        )
-
-    [3] => Array
-        (
             [file] => src/lib/Getter.php
             [message] => broken link to \__set() in johnsnook\parsel\lib\Getter
-        )
-
-    [4] => Array
-        (
-            [line] => 26
-            [file] => src/models/Episode.php
-            [message] => Method tableName has no parent to inherit from in johnsnook\parsel\models\Episode.
-        )
-
-    [5] => Array
-        (
-            [line] => 33
-            [file] => src/models/Episode.php
-            [message] => Method rules has no parent to inherit from in johnsnook\parsel\models\Episode.
-        )
-
-    [6] => Array
-        (
-            [line] => 48
-            [file] => src/models/Episode.php
-            [message] => Method attributeLabels has no parent to inherit from in johnsnook\parsel\models\Episode.
-        )
-
-    [7] => Array
-        (
-            [line] => 25
-            [file] => src/models/Script.php
-            [message] => Method tableName has no parent to inherit from in johnsnook\parsel\models\Script.
-        )
-
-    [8] => Array
-        (
-            [line] => 32
-            [file] => src/models/Script.php
-            [message] => Method rules has no parent to inherit from in johnsnook\parsel\models\Script.
-        )
-
-    [9] => Array
-        (
-            [line] => 46
-            [file] => src/models/Script.php
-            [message] => Method attributeLabels has no parent to inherit from in johnsnook\parsel\models\Script.
-        )
-
-    [10] => Array
-        (
-            [line] => 30
-            [file] => src/models/ScriptSearch.php
-            [message] => Method rules has no parent to inherit from in johnsnook\parsel\models\ScriptSearch.
-        )
-
-    [11] => Array
-        (
-            [line] => 45
-            [file] => src/models/ScriptSearch.php
-            [message] => Method scenarios has no parent to inherit from in johnsnook\parsel\models\ScriptSearch.
         )
 
 )
