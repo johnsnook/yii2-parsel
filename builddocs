@@ -5,3 +5,4 @@ docs api ./src ./docs
 docs guide . docs
 
 sed -i 's/Yii Framework 2.0 API Documentation/Yii2 Parsel API Documentation/g' docs/*html
+sed -i 's/The Definitive Guide to Yii 2.0/The Definitive Guide to Yii2 Parsel/g' docs/*html
