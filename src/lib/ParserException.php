@@ -13,6 +13,9 @@
 
 namespace johnsnook\parsel\lib;
 
+/**
+ * A Runtime exception by any other name stinks just as bad
+ */
 class ParserException extends \RuntimeException {
 
 }

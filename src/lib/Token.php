@@ -13,6 +13,9 @@
 
 namespace johnsnook\parsel\lib;
 
+/**
+ * Represents a single lexeme token
+ */
 final class Token extends Getter {
 
     /**

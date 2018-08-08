@@ -13,6 +13,9 @@ namespace johnsnook\parsel\lib;
 use yii\base\InvalidCallException;
 use yii\base\UnknownPropertyException;
 
+/**
+ * A class to wrap php __get magic method
+ */
 class Getter {
 
     /**

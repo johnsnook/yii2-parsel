@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afb459d7/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/72d2d9ed/solarized_light.css" rel="stylesheet">
+<link href="./assets/30c3cdd9/style.css" rel="stylesheet">
+<script src="./assets/de5d4282/jquery.js"></script>
+<script src="./assets/afb459d7/js/bootstrap.js"></script>
+<script src="./assets/6cd15ed1/jssearch.js"></script>    <title>The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w8" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w8-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">The Definitive Guide to Yii 2.0</a></div><div id="w8-collapse" class="collapse navbar-collapse"><ul id="w9" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-0" data-toggle="collapse" data-parent="#navigation">Installation <b class="caret"></b></a><div id="navigation-0" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-1" data-toggle="collapse" data-parent="#navigation">Usage <b class="caret"></b></a><div id="navigation-1" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-2" data-toggle="collapse" data-parent="#navigation">Tokens/behavior: <b class="caret"></b></a><div id="navigation-2" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-3" data-toggle="collapse" data-parent="#navigation">Conjunctives: <b class="caret"></b></a><div id="navigation-3" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-4" data-toggle="collapse" data-parent="#navigation">Operators: <b class="caret"></b></a><div id="navigation-4" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-5" data-toggle="collapse" data-parent="#navigation">Examples <b class="caret"></b></a><div id="navigation-5" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-6" data-toggle="collapse" data-parent="#navigation">Additional Reading <b class="caret"></b></a><div id="navigation-6" class="submenu panel-collapse collapse"></div>
+<a class="list-group-item" href="#navigation-7" data-toggle="collapse" data-parent="#navigation">Acknowledgements <b class="caret"></b></a><div id="navigation-7" class="submenu panel-collapse collapse"></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Yii2 Parsel <span id="yii2-parsel"></span><a href="#yii2-parsel" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#tokensbehavior">Tokens/behavior:</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li></ol></div>
+<p>Allows developers to provide a boolean search query interface, similar to Google or Sphinx search or other full-text search (FTS) engines.</p>
+<p>Turns a user query like '<code>georgia -(atlanta or decatur)</code>' into '<code>georgia AND NOT (atlanta or decatur)</code>' which is then turn into the follow SQL:</p>
+<pre><code class="hljs sql language-sql"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> 
+  <span class="hljs-string">"ip"</span>, <span class="hljs-comment">/* ip address */</span>
+  <span class="hljs-string">"visits"</span>, <span class="hljs-comment">/* how many requests they've made */</span>
+  <span class="hljs-string">"city"</span>, 
+  <span class="hljs-string">"region"</span> 
+<span class="hljs-keyword">FROM</span> 
+<span class="hljs-comment">/* A table similar to apaches access log.  See my extension yii2-ipFilter */</span>
+  <span class="hljs-string">"visitor"</span> 
+<span class="hljs-keyword">WHERE</span> 
+  (
+    (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"ip"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%georgia%'</span>) 
+    <span class="hljs-keyword">OR</span> (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"city"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%georgia%'</span>) 
+    <span class="hljs-keyword">OR</span> (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"region"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%georgia%'</span>)
+  ) 
+  <span class="hljs-keyword">AND</span> ( <span class="hljs-comment">/** marvel as we efortlessly generate a subquery */</span>
+    <span class="hljs-string">"ip"</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span> (
+      <span class="hljs-keyword">SELECT</span> 
+        <span class="hljs-string">"ip"</span> 
+      <span class="hljs-keyword">FROM</span> 
+        <span class="hljs-string">"visitor"</span> 
+      <span class="hljs-keyword">WHERE</span> 
+        (
+          (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"ip"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%atlanta%'</span>) 
+          <span class="hljs-keyword">OR</span> (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"city"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%atlanta%'</span>) 
+          <span class="hljs-keyword">OR</span> (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"region"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%atlanta%'</span>)
+        ) 
+        <span class="hljs-keyword">OR</span> (
+          (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"ip"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%decatur%'</span>) 
+          <span class="hljs-keyword">OR</span> (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"city"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%decatur%'</span>) 
+          <span class="hljs-keyword">OR</span> (<span class="hljs-string">"visitor"</span>.<span class="hljs-string">"region"</span> <span class="hljs-keyword">ILIKE</span> <span class="hljs-string">'%decatur%'</span>)
+        )
+    )
+  )
+</span></code></pre>
+<p>Example results:</p>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th>Ip             </th><th>Visits </th><th>City          </th><th>Region</th></tr>
+</thead>
+<tbody>
+<tr><td>107.77.232.216 </td><td>16     </td><td>              </td><td>Georgia</td></tr>
+<tr><td>107.77.235.199 </td><td>3      </td><td>              </td><td>Georgia</td></tr>
+<tr><td>174.218.142.27 </td><td>1      </td><td>Lawrenceville </td><td>Georgia</td></tr>
+<tr><td>107.77.233.225 </td><td>18     </td><td>              </td><td>Georgia</td></tr>
+<tr><td>205.201.132.14 </td><td>42     </td><td>Woodstock     </td><td>Georgia</td></tr>
+<tr><td>192.3.160.15   </td><td>4      </td><td>Douglas       </td><td>Georgia</td></tr>
+</tbody>
+</table>
+<h2>Installation <span id="installation"></span><a href="#installation" class="hashlink">&para;</a></h2><p>The preferred way to install this extension is through <a href="http://getcomposer.org/download/">composer</a>.</p>
+<p>Either run</p>
+<pre><code class="hljs nginx"><span class="hljs-title">php</span> composer.phar require --prefer-dist johnsnook/yii2-parsel <span class="hljs-string">"*"</span>
+</code></pre>
+<p>or add</p>
+<pre><code class="hljs bash"><span class="hljs-string">"johnsnook/yii2-parsel"</span>: <span class="hljs-string">"*"</span>
+</code></pre>
+<p>to the require section of your <code>composer.json</code> file.</p>
+<h2>Usage <span id="usage"></span><a href="#usage" class="hashlink">&para;</a></h2><blockquote><p><em>"Look, I didn't know I could speak Parseltongue! What else don't I know about myself? Look. Maybe you can do something, even something horrible and not know you did it."</em></p>
+</blockquote>
+<p>Once the extension is installed, simply use it in your code by  :</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$userQuery</span> = <span class="hljs-string">'good AND plenty -licorice'</span>;
+<span class="hljs-variable">$parsel</span> = <span class="hljs-keyword">new</span> ParselQuery([
+            <span class="hljs-string">'userQuery'</span> =&gt; <span class="hljs-variable">$this</span>-&gt;userQuery,
+            <span class="hljs-string">'dbQuery'</span> =&gt; Script::find()
+        ]);
+<span class="hljs-variable">$parsel</span>-&gt;dbQuery-&gt;all();
+</code></pre>
+<h2>Tokens/behavior: <span id="tokensbehavior"></span><a href="#tokensbehavior" class="hashlink">&para;</a></h2><p>Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression <code>'%smart%'</code>.  Search is case insensitive as long as your database's <code>LIKE</code> operator is.  PostgreSQL will use <code>ILIKE</code>.  </p>
+<h4>Conjunctives: <span id="conjunctives"></span><a href="#conjunctives" class="hashlink">&para;</a></h4><p>'AND' is the default behavior. "smart pretty" is the same as "smart AND pretty."</p>
+<p>'OR' allows more results in your query:  "smart OR pretty."</p>
+<h4>Operators: <span id="operators"></span><a href="#operators" class="hashlink">&para;</a></h4><table class="table table-bordered table-striped">
+<thead>
+<tr><th>Operator </th><th>Type               </th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>-        </td><td>Negation           </td><td>The user query "smart pretty -judgmental" parses to "smart AND pretty AND NOT judgmental"</td></tr>
+<tr><td>()       </td><td>Sub-query          </td><td>Allows grouping of terms .  The user query "-crazy (smart AND pretty)" parses to "NOT crazy AND (smart AND pretty)"</td></tr>
+<tr><td><em>        | Wildcard           | Fuzzy matches. "butt\</em>" matches butt, buttery, buttered etc.</td></tr>
+<tr><td><em>        | Character wildcard | Matches one character.  "boo\</em>" matches boot, book, bool, boon, etc.</td></tr>
+<tr><td>=        </td><td>Full match         </td><td>Entire fields must be equal to the term.  "=georgia" only matches where one or more fields is exactly equal to the search term.  The search term will NOT be bracketed with %, but wildcards can still be used.</td></tr>
+<tr><td>""       </td><td>Double quotes      </td><td>Phrase. '"Super fun"' searches for the full phrase, space include.  Wild cards, negation and exact match operators all work within the phrase.</td></tr>
+<tr><td>''       </td><td>Single quotes      </td><td>Phrase, no wildcards.  The term will not be evaluated for <em> or <em>, but will be wrapped in wildcards.  If a % or </em> is in the term, it will be escaped.  'P%on</em>' becomes '%P\%on*%'.</td></tr>
+<tr><td>:        </td><td>Field              </td><td>Specify the field to search.  'name:jo<em>' will search the name field for 'jo\</em>.' If no field name matches, all fields will be searched for 'name:jo*'</td></tr>
+</tbody>
+</table>
+<h4>Examples <span id="examples"></span><a href="#examples" class="hashlink">&para;</a></h4><p>See files in /examples.  If it's still up, you might also be able to play with an example <a href="https://snooky.biz/parsel">here</a></p>
+<h4>Additional Reading <span id="additional-reading"></span><a href="#additional-reading" class="hashlink">&para;</a></h4><p><strong>PostgreSQL</strong></p>
+<p><a href="http://blog.scoutapp.com/articles/2016/07/12/how-to-make-text-searches-in-postgresql-faster-with-trigram-similarity">Faster PostgreSQL Searches with Trigrams</a>	</p>
+<p><a href="https://stackoverflow.com/a/13452528">Optimizing databases for fuzzy searching</a> </p>
+<p><strong>MySQL</strong></p>
+<p><a href="https://makandracards.com/makandra/12813-performance-analysis-of-mysql-s-fulltext-indexes-and-like-queries-for-full-text-search">Performance analysis of MySQL's FULLTEXT indexes and LIKE queries for full text search</a></p>
+<h2>Acknowledgements <span id="acknowledgements"></span><a href="#acknowledgements" class="hashlink">&para;</a></h2><p>This project was built by heavily modifying the excellent "<a href="https://github.com/pimcore/search-query-parser">Search Query Parser</a>" project.  I de-abstracted the token structure and modified the parser class to better fit my needs.  Their licsence file should be found at the root of this project.</p>
+<p>Both projects are made possible by the amazing and lightning quick <a href="https://github.com/nikic/Phlexy">lexer library</a> by Nikita Popov of Berlin.  It's work reading his <a href="http://nikic.github.io/2011/10/23/Improving-lexing-performance-in-PHP.html">article on the subject</a>.</p>
+<p><a href="https://snooky.biz/post/section/Ragedump">.</a> <a href="https://snooky.biz/post/the-sixth-general-order">.</a> <a href="https://snooky.biz/post/legal-threats">.</a> <a href="https://snooky.biz/post/taking-out-the-trash">.</a> <a href="https://snooky.biz/post/jeez-babe-i-dont-know-whats-wrong">.</a> <a href="https://snooky.biz/post/my-stupid-vitriol">.</a> <a href="https://snooky.biz/post/the-drama-train-just-keeps-a-chuggin">.</a> <a href="https://snooky.biz/post/hypocrisy">.</a> <a href="https://snooky.biz/post/marjorie-snook-isnt-your-name">.</a> <a href="https://snooky.biz/post/inconstant-hooer">.</a> <a href="https://snooky.biz/post/mother-of-the-year">.</a> </p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Wed, 08 Aug 2018 22:43:35 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

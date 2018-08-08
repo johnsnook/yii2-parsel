@@ -20,17 +20,15 @@ use johnsnook\parsel\lib\SqlFormatter;
 use yii\base\InvalidConfigException;
 
 /**
- * The main class for this extension.  The main method is {{build}}.
+ * The main class for this extension.  The main method is [[processQuery]].
  * @property-read string $lastError The message when a query can't be parsed.
- * @property-read array $tokens The tokens created by the lexer.
- * @property-read array $queryParts The query parts created by the parser.
- * @property yii\db\Query $dbQuery The database query we'll be adding to
+ * @property-read array $tokens The tokens created by [[Lexer::lex]].
+ * @property-read array $queryParts The query parts created by [[Parser::parse]].
+ * @property [[yii\db\Query]] $dbQuery The database query we'll be adding to
  * @property string|array $userQuery The search string entered by the user, or the array of sub-query parts
  * @property array|null $searchFields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
  */
 class ParselQuery extends \yii\base\BaseObject {
-
-    public $profile = [];
 
     /**
      * @var string The message when a query can't be parsed.
@@ -162,7 +160,6 @@ class ParselQuery extends \yii\base\BaseObject {
      */
     public function getDbQuery() {
         $queryParts = $this->queryParts;
-        $this->profile[] = ["processQuery" => new \DateTime()];
         return $this->processQuery($this->dbQuery, $queryParts, $this->searchFields);
     }
 
@@ -192,7 +189,6 @@ class ParselQuery extends \yii\base\BaseObject {
         $parser = new Parser();
         $tokens = $this->tokens;
         $queryParts = [];
-        $this->profile[] = ["Parser parse" => new \DateTime()];
         try {
             $queryParts = $parser->parse($tokens);
         } catch (ParserException $pe) {
@@ -237,7 +233,6 @@ class ParselQuery extends \yii\base\BaseObject {
      */
     public function getTokens() {
         $lexer = new Lexer();
-        $this->profile[] = ["Lexer lex" => new \DateTime()];
         return $lexer->lex($this->userQuery);
     }
 

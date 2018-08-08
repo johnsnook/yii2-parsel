@@ -36,7 +36,9 @@ class SqlFormatter {
     const TOKEN_TYPE = 0;
     const TOKEN_VALUE = 1;
 
-    // Reserved words (for syntax highlighting)
+    /**
+     * @var array Reserved words (for syntax highlighting)
+     */
     protected static $reserved = array(
         'ACCESSIBLE', 'ACTION', 'AGAINST', 'AGGREGATE', 'ALGORITHM', 'ALL', 'ALTER', 'ANALYSE', 'ANALYZE', 'AS', 'ASC',
         'AUTOCOMMIT', 'AUTO_INCREMENT', 'BACKUP', 'BEGIN', 'BETWEEN', 'BINLOG', 'BOTH', 'CASCADE', 'CASE', 'CHANGE', 'CHANGED', 'CHARACTER SET',
@@ -64,15 +66,25 @@ class SqlFormatter {
         'TRUNCATE', 'TYPE', 'TYPES', 'UNCOMMITTED', 'UNIQUE', 'UNLOCK', 'UNSIGNED', 'USAGE', 'USE', 'USING', 'VARIABLES',
         'VIEW', 'WHEN', 'WITH', 'WORK', 'WRITE', 'YEAR_MONTH'
     );
-    // For SQL formatting
-    // These keywords will all be on their own line
+
+    /**
+     * @var array These keywords will all be on their own line
+     */
     protected static $reserved_toplevel = array(
         'SELECT', 'FROM', 'WHERE', 'SET', 'ORDER BY', 'GROUP BY', 'LIMIT', 'DROP',
         'VALUES', 'UPDATE', 'HAVING', 'ADD', 'AFTER', 'ALTER TABLE', 'DELETE FROM', 'UNION ALL', 'UNION', 'EXCEPT', 'INTERSECT'
     );
+
+    /**
+     * @var array These keywords trigger a carriage return
+     */
     protected static $reserved_newline = array(
         'LEFT OUTER JOIN', 'RIGHT OUTER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'OUTER JOIN', 'INNER JOIN', 'JOIN', 'XOR', 'OR', 'AND'
     );
+
+    /**
+     * @var array Known and common SQL functions
+     */
     protected static $functions = array(
         'ABS', 'ACOS', 'ADDDATE', 'ADDTIME', 'AES_DECRYPT', 'AES_ENCRYPT', 'AREA', 'ASBINARY', 'ASCII', 'ASIN', 'ASTEXT', 'ATAN', 'ATAN2',
         'AVG', 'BDMPOLYFROMTEXT', 'BDMPOLYFROMWKB', 'BDPOLYFROMTEXT', 'BDPOLYFROMWKB', 'BENCHMARK', 'BIN', 'BIT_AND', 'BIT_COUNT', 'BIT_LENGTH',
@@ -101,56 +113,203 @@ class SqlFormatter {
         'UNCOMPRESS', 'UNCOMPRESSED_LENGTH', 'UNHEX', 'UNIQUE_USERS', 'UNIX_TIMESTAMP', 'UPDATEXML', 'UPPER', 'USER', 'UTC_DATE', 'UTC_TIME', 'UTC_TIMESTAMP',
         'UUID', 'VARIANCE', 'VAR_POP', 'VAR_SAMP', 'VERSION', 'WEEK', 'WEEKDAY', 'WEEKOFYEAR', 'WITHIN', 'X', 'Y', 'YEAR', 'YEARWEEK'
     );
-    // Punctuation that can be used as a boundary between other tokens
+
+    /**
+     * @var type Punctuation that can be used as a boundary between other tokens
+     */
     protected static $boundaries = array(',', ';', ':', ')', '(', '.', '=', '<', '>', '+', '-', '*', '/', '!', '^', '%', '|', '&', '#');
-    // For HTML syntax highlighting
-    // Styles applied to different token types
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Quotes are blue.
+     */
     public static $quote_attributes = 'style="color: blue;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Backticks are purple.
+     */
     public static $backtick_quote_attributes = 'style="color: purple;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Reserved words are bold.
+     */
     public static $reserved_attributes = 'style="font-weight:bold;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.
+     */
     public static $boundary_attributes = '';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Numbers are green.
+     */
     public static $number_attributes = 'style="color: green;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Words are grey.
+     */
     public static $word_attributes = 'style="color: #333;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Errors are red.
+     */
     public static $error_attributes = 'style="background-color: red;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Comments are light grey.
+     */
     public static $comment_attributes = 'style="color: #aaa;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Variable attributes are orange.
+     */
     public static $variable_attributes = 'style="color: orange;"';
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  Pre attributes are black on white.
+     */
     public static $pre_attributes = 'style="color: black; background-color: white;"';
-    // Boolean - whether or not the current environment is the CLI
-    // This affects the type of syntax highlighting
-    // If not defined, it will be determined automatically
+
+    /**
+     * This affects the type of syntax highlighting
+     * If not defined, it will be determined automatically
+     *
+     * @var boolean whether or not the current environment is the CLI
+     */
     public static $cli;
-    // For CLI syntax highlighting
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.  Quotes are blue.
+     */
     public static $cli_quote = "\x1b[34;1m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_backtick_quote = "\x1b[35;1m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_reserved = "\x1b[37m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_boundary = "";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_number = "\x1b[32;1m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_word = "";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_error = "\x1b[31;1;7m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_comment = "\x1b[30;1m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_functions = "\x1b[37m";
+
+    /**
+     * @var string Styles applied to different token types for HTML syntax
+     * highlighting.  For CLI syntax highlighting.
+     */
     public static $cli_variable = "\x1b[36;1m";
-    // The tab character to use when formatting SQL
+
+    /**
+     * @var string The tab character to use when formatting SQL
+     */
     public static $tab = '  ';
-    // This flag tells us if queries need to be enclosed in <pre> tags
+
+    /**
+     * @var boolean This flag tells us if queries need to be enclosed in <pre> tags
+     */
     public static $use_pre = true;
-    // This flag tells us if SqlFormatted has been initialized
+
+    /**
+     * @var boolean This flag tells us if SqlFormatted has been initialized
+     */
     protected static $init;
-    // Regular expressions for tokenizing
+
+    /**
+     * @var type Regular expressions for tokenizing
+     */
     protected static $regex_boundaries;
+
+    /**
+     * @var type Regular expressions for tokenizing
+     */
     protected static $regex_reserved;
+
+    /**
+     * @var type Regular expressions for tokenizing
+     */
     protected static $regex_reserved_newline;
+
+    /**
+     * @var type Regular expressions for tokenizing
+     */
     protected static $regex_reserved_toplevel;
+
+    /**
+     * @var type Regular expressions for tokenizing
+     */
     protected static $regex_function;
     // Cache variables
-    // Only tokens shorter than this size will be cached.  Somewhere between 10 and 20 seems to work well for most cases.
+    /**
+     * @var integer Only tokens shorter than this size will be cached.  Somewhere between 10 and 20 seems to work well for most cases.
+     */
     public static $max_cachekey_size = 15;
+
+    /**
+     * @var array Cache variables
+     */
     protected static $token_cache = array();
+
+    /**
+     * @var integer Cache hits
+     */
     protected static $cache_hits = 0;
+
+    /**
+     * @var integer Cache misses
+     */
     protected static $cache_misses = 0;
 
     /**
      * Get stats about the token cache
+     *
      * @return Array An array containing the keys 'hits', 'misses', 'entries', and 'size' in bytes
      */
     public static function getCacheStats() {
@@ -320,14 +479,19 @@ class SqlFormatter {
         );
     }
 
+    /**
+     * Checks for the following patterns:
+     * 1. backtick quoted string using `` to escape
+     * 2. square bracket quoted string (SQL Server) using ]] to escape
+     * 3. double quoted string using "" or \" to escape
+     * 4. single quoted string using '' or \' to escape
+     *
+     * @param string $string
+     * @return string
+     */
     protected static function getQuotedString($string) {
         $ret = null;
 
-        // This checks for the following patterns:
-        // 1. backtick quoted string using `` to escape
-        // 2. square bracket quoted string (SQL Server) using ]] to escape
-        // 3. double quoted string using "" or \" to escape
-        // 4. single quoted string using '' or \' to escape
         if (preg_match('/^(((`[^`]*($|`))+)|((\[[^\]]*($|\]))(\][^\]]*($|\]))*)|(("[^"\\\\]*(?:\\\\.[^"\\\\]*)*("|$))+)|((\'[^\'\\\\]*(?:\\\\.[^\'\\\\]*)*(\'|$))+))/s', $string, $matches)) {
             $ret = $matches[1];
         }

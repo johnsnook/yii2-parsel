@@ -13,6 +13,11 @@
 
 namespace johnsnook\parsel\lib;
 
+/**
+ * A collection of Tokens
+ *
+ * @see [[Token]]
+ */
 final class Tokens {
 
     const WHITESPACE = 0;
@@ -61,6 +66,12 @@ final class Tokens {
         return $termTokens;
     }
 
+    /**
+     * I didn't write this and am too tired to figure out what it's doing right now
+     *
+     * @staticvar array $constants
+     * @return array
+     */
     private static function getTokenMapping() {//: array
         static $constants;
 

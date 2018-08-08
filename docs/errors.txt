@@ -2,8 +2,20 @@ Array
 (
     [0] => Array
         (
-            [file] => src/lib/Getter.php
-            [message] => broken link to \__set() in johnsnook\parsel\lib\Getter
+            [file] => src/ParselQuery.php
+            [message] => broken link to \johnsnook\parsel\parseQuery in johnsnook\parsel\ParselQuery
+        )
+
+    [1] => Array
+        (
+            [file] => src/ParselQuery.php
+            [message] => broken link to \johnsnook\parsel\parseQuery in johnsnook\parsel\ParselQuery
+        )
+
+    [2] => Array
+        (
+            [file] => src/ParselQuery.php
+            [message] => broken link to \johnsnook\parsel\parseQuery in johnsnook\parsel\ParselQuery
         )
 
 )

@@ -16,10 +16,14 @@ use Phlexy\Lexer as PhlexyLexer;
 use Phlexy\LexerDataGenerator;
 use Phlexy\LexerFactory\Stateless\UsingPregReplace;
 
+/**
+ * Deconstructs a user query string into lexemes as an array of tokens to be
+ * parsed by the parser.
+ */
 class Lexer {
 
     /**
-     * @var PhlexyLexer
+     * @var PhlexyLexer The PhlexyLexer object, which does the heavy lifting
      */
     protected $lexer;
 
@@ -35,6 +39,8 @@ class Lexer {
     }
 
     /**
+     * Defines the character to token relationship to be used by regex
+     *
      * @return array
      */
     protected function getDefaultDefinition() { #: array
@@ -52,6 +58,8 @@ class Lexer {
     }
 
     /**
+     * Gets the data generator in a regex wrapper, gets our definition then lexes.
+     *
      * @return PhlexyLexer
      */
     protected function buildDefaultLexer() { #: PhlexyLexer
@@ -66,6 +74,8 @@ class Lexer {
     }
 
     /**
+     * Outer wrapper of the lexer object.  Removes the extraneous whitespace tokens
+     *
      * @param $string
      *
      * @return Token[]
