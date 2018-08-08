@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "nikic/Phlexy": "dev-master",
+        "nikic/Phlexy": "v0.1",
         "yiisoft/yii2": "~2.0.0"
     },
     "autoload": {

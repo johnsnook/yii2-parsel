@@ -1,0 +1,668 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 16
+            [file] => src/Module.php
+            [message] => No docblock for element 'johnsnook\parsel\Module'
+        )
+
+    [1] => Array
+        (
+            [line] => 33
+            [file] => src/ParselQuery.php
+            [message] => No docblock for element '$profile'
+        )
+
+    [2] => Array
+        (
+            [line] => 33
+            [file] => src/ParselQuery.php
+            [message] => No short description for element '$profile'
+        )
+
+    [3] => Array
+        (
+            [line] => 25
+            [file] => src/examples/ExampleSearch.php
+            [message] => No short description for element '$parsel'
+        )
+
+    [4] => Array
+        (
+            [line] => 38
+            [file] => src/examples/ExampleSearch.php
+            [message] => No docblock for element 'basename'
+        )
+
+    [5] => Array
+        (
+            [line] => 13
+            [file] => src/lib/Getter.php
+            [message] => No docblock for element 'johnsnook\parsel\lib\Getter'
+        )
+
+    [6] => Array
+        (
+            [line] => 19
+            [file] => src/lib/Lexer.php
+            [message] => No docblock for element 'johnsnook\parsel\lib\Lexer'
+        )
+
+    [7] => Array
+        (
+            [line] => 24
+            [file] => src/lib/Lexer.php
+            [message] => No short description for element '$lexer'
+        )
+
+    [8] => Array
+        (
+            [line] => 16
+            [file] => src/lib/Parser.php
+            [message] => No docblock for element 'johnsnook\parsel\lib\Parser'
+        )
+
+    [9] => Array
+        (
+            [line] => 16
+            [file] => src/lib/ParserException.php
+            [message] => No docblock for element 'johnsnook\parsel\lib\ParserException'
+        )
+
+    [10] => Array
+        (
+            [line] => 40
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$reserved'
+        )
+
+    [11] => Array
+        (
+            [line] => 40
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$reserved'
+        )
+
+    [12] => Array
+        (
+            [line] => 69
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$reserved_toplevel'
+        )
+
+    [13] => Array
+        (
+            [line] => 69
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$reserved_toplevel'
+        )
+
+    [14] => Array
+        (
+            [line] => 73
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$reserved_newline'
+        )
+
+    [15] => Array
+        (
+            [line] => 73
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$reserved_newline'
+        )
+
+    [16] => Array
+        (
+            [line] => 76
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$functions'
+        )
+
+    [17] => Array
+        (
+            [line] => 76
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$functions'
+        )
+
+    [18] => Array
+        (
+            [line] => 105
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$boundaries'
+        )
+
+    [19] => Array
+        (
+            [line] => 105
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$boundaries'
+        )
+
+    [20] => Array
+        (
+            [line] => 108
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$quote_attributes'
+        )
+
+    [21] => Array
+        (
+            [line] => 108
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$quote_attributes'
+        )
+
+    [22] => Array
+        (
+            [line] => 109
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$backtick_quote_attributes'
+        )
+
+    [23] => Array
+        (
+            [line] => 109
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$backtick_quote_attributes'
+        )
+
+    [24] => Array
+        (
+            [line] => 110
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$reserved_attributes'
+        )
+
+    [25] => Array
+        (
+            [line] => 110
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$reserved_attributes'
+        )
+
+    [26] => Array
+        (
+            [line] => 111
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$boundary_attributes'
+        )
+
+    [27] => Array
+        (
+            [line] => 111
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$boundary_attributes'
+        )
+
+    [28] => Array
+        (
+            [line] => 112
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$number_attributes'
+        )
+
+    [29] => Array
+        (
+            [line] => 112
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$number_attributes'
+        )
+
+    [30] => Array
+        (
+            [line] => 113
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$word_attributes'
+        )
+
+    [31] => Array
+        (
+            [line] => 113
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$word_attributes'
+        )
+
+    [32] => Array
+        (
+            [line] => 114
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$error_attributes'
+        )
+
+    [33] => Array
+        (
+            [line] => 114
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$error_attributes'
+        )
+
+    [34] => Array
+        (
+            [line] => 115
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$comment_attributes'
+        )
+
+    [35] => Array
+        (
+            [line] => 115
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$comment_attributes'
+        )
+
+    [36] => Array
+        (
+            [line] => 116
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$variable_attributes'
+        )
+
+    [37] => Array
+        (
+            [line] => 116
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$variable_attributes'
+        )
+
+    [38] => Array
+        (
+            [line] => 117
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$pre_attributes'
+        )
+
+    [39] => Array
+        (
+            [line] => 117
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$pre_attributes'
+        )
+
+    [40] => Array
+        (
+            [line] => 121
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli'
+        )
+
+    [41] => Array
+        (
+            [line] => 121
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli'
+        )
+
+    [42] => Array
+        (
+            [line] => 123
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_quote'
+        )
+
+    [43] => Array
+        (
+            [line] => 123
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_quote'
+        )
+
+    [44] => Array
+        (
+            [line] => 124
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_backtick_quote'
+        )
+
+    [45] => Array
+        (
+            [line] => 124
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_backtick_quote'
+        )
+
+    [46] => Array
+        (
+            [line] => 125
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_reserved'
+        )
+
+    [47] => Array
+        (
+            [line] => 125
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_reserved'
+        )
+
+    [48] => Array
+        (
+            [line] => 126
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_boundary'
+        )
+
+    [49] => Array
+        (
+            [line] => 126
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_boundary'
+        )
+
+    [50] => Array
+        (
+            [line] => 127
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_number'
+        )
+
+    [51] => Array
+        (
+            [line] => 127
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_number'
+        )
+
+    [52] => Array
+        (
+            [line] => 128
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_word'
+        )
+
+    [53] => Array
+        (
+            [line] => 128
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_word'
+        )
+
+    [54] => Array
+        (
+            [line] => 129
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_error'
+        )
+
+    [55] => Array
+        (
+            [line] => 129
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_error'
+        )
+
+    [56] => Array
+        (
+            [line] => 130
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_comment'
+        )
+
+    [57] => Array
+        (
+            [line] => 130
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_comment'
+        )
+
+    [58] => Array
+        (
+            [line] => 131
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_functions'
+        )
+
+    [59] => Array
+        (
+            [line] => 131
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_functions'
+        )
+
+    [60] => Array
+        (
+            [line] => 132
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cli_variable'
+        )
+
+    [61] => Array
+        (
+            [line] => 132
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cli_variable'
+        )
+
+    [62] => Array
+        (
+            [line] => 134
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$tab'
+        )
+
+    [63] => Array
+        (
+            [line] => 134
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$tab'
+        )
+
+    [64] => Array
+        (
+            [line] => 136
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$use_pre'
+        )
+
+    [65] => Array
+        (
+            [line] => 136
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$use_pre'
+        )
+
+    [66] => Array
+        (
+            [line] => 138
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$init'
+        )
+
+    [67] => Array
+        (
+            [line] => 138
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$init'
+        )
+
+    [68] => Array
+        (
+            [line] => 140
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$regex_boundaries'
+        )
+
+    [69] => Array
+        (
+            [line] => 140
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$regex_boundaries'
+        )
+
+    [70] => Array
+        (
+            [line] => 141
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$regex_reserved'
+        )
+
+    [71] => Array
+        (
+            [line] => 141
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$regex_reserved'
+        )
+
+    [72] => Array
+        (
+            [line] => 142
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$regex_reserved_newline'
+        )
+
+    [73] => Array
+        (
+            [line] => 142
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$regex_reserved_newline'
+        )
+
+    [74] => Array
+        (
+            [line] => 143
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$regex_reserved_toplevel'
+        )
+
+    [75] => Array
+        (
+            [line] => 143
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$regex_reserved_toplevel'
+        )
+
+    [76] => Array
+        (
+            [line] => 144
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$regex_function'
+        )
+
+    [77] => Array
+        (
+            [line] => 144
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$regex_function'
+        )
+
+    [78] => Array
+        (
+            [line] => 147
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$max_cachekey_size'
+        )
+
+    [79] => Array
+        (
+            [line] => 147
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$max_cachekey_size'
+        )
+
+    [80] => Array
+        (
+            [line] => 148
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$token_cache'
+        )
+
+    [81] => Array
+        (
+            [line] => 148
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$token_cache'
+        )
+
+    [82] => Array
+        (
+            [line] => 149
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cache_hits'
+        )
+
+    [83] => Array
+        (
+            [line] => 149
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cache_hits'
+        )
+
+    [84] => Array
+        (
+            [line] => 150
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element '$cache_misses'
+        )
+
+    [85] => Array
+        (
+            [line] => 150
+            [file] => src/lib/SqlFormatter.php
+            [message] => No short description for element '$cache_misses'
+        )
+
+    [86] => Array
+        (
+            [line] => 323
+            [file] => src/lib/SqlFormatter.php
+            [message] => No docblock for element 'getQuotedString'
+        )
+
+    [87] => Array
+        (
+            [line] => 16
+            [file] => src/lib/Token.php
+            [message] => No docblock for element 'johnsnook\parsel\lib\Token'
+        )
+
+    [88] => Array
+        (
+            [line] => 16
+            [file] => src/lib/Tokens.php
+            [message] => No docblock for element 'johnsnook\parsel\lib\Tokens'
+        )
+
+    [89] => Array
+        (
+            [line] => 19
+            [file] => src/models/Script.php
+            [message] => No docblock for element '$seid'
+        )
+
+    [90] => Array
+        (
+            [line] => 19
+            [file] => src/models/Script.php
+            [message] => No short description for element '$seid'
+        )
+
+    [91] => Array
+        (
+            [line] => 20
+            [file] => src/models/Script.php
+            [message] => No docblock for element '$air_date'
+        )
+
+    [92] => Array
+        (
+            [line] => 20
+            [file] => src/models/Script.php
+            [message] => No short description for element '$air_date'
+        )
+
+    [93] => Array
+        (
+            [line] => 25
+            [file] => src/models/ScriptSearch.php
+            [message] => No short description for element '$parsel'
+        )
+
+    [94] => Array
+        (
+            [line] => 38
+            [file] => src/models/ScriptSearch.php
+            [message] => No docblock for element 'basename'
+        )
+
+)

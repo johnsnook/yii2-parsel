@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/afb459d7/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/72d2d9ed/solarized_light.css" rel="stylesheet">
+<link href="./assets/30c3cdd9/style.css" rel="stylesheet">
+<script src="./assets/de5d4282/jquery.js"></script>
+<script src="./assets/afb459d7/js/bootstrap.js"></script>
+<script src="./assets/6cd15ed1/jssearch.js"></script>    <title>SqlFormatter, johnsnook\parsel\lib\SqlFormatter - Yii Framework 2.0 API Documentation</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w54" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w54-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Yii Framework 2.0 API Documentation</a></div><div id="w54-collapse" class="collapse navbar-collapse"><ul id="w55" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-3">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-49" data-toggle="collapse" data-parent="#navigation">frontend\models <b class="caret"></b></a><div id="navigation-49" class="submenu panel-collapse collapse"><a class="list-group-item" href="./frontend-models-examplesearch.html">ExampleSearch</a></div>
+<a class="list-group-item" href="#navigation-50" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel <b class="caret"></b></a><div id="navigation-50" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-module.html">Module</a>
+<a class="list-group-item" href="./johnsnook-parsel-parselquery.html">ParselQuery</a></div>
+<a class="list-group-item" href="#navigation-51" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\commands <b class="caret"></b></a><div id="navigation-51" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-commands-parselcontroller.html">ParselController</a></div>
+<a class="list-group-item active" href="#navigation-52" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\lib <b class="caret"></b></a><div id="navigation-52" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./johnsnook-parsel-lib-getter.html">Getter</a>
+<a class="list-group-item" href="./johnsnook-parsel-lib-lexer.html">Lexer</a>
+<a class="list-group-item" href="./johnsnook-parsel-lib-parser.html">Parser</a>
+<a class="list-group-item" href="./johnsnook-parsel-lib-parserexception.html">ParserException</a>
+<a class="list-group-item active" href="./johnsnook-parsel-lib-sqlformatter.html">SqlFormatter</a>
+<a class="list-group-item" href="./johnsnook-parsel-lib-token.html">Token</a>
+<a class="list-group-item" href="./johnsnook-parsel-lib-tokens.html">Tokens</a></div>
+<a class="list-group-item" href="#navigation-53" data-toggle="collapse" data-parent="#navigation">johnsnook\parsel\models <b class="caret"></b></a><div id="navigation-53" class="submenu panel-collapse collapse"><a class="list-group-item" href="./johnsnook-parsel-models-episode.html">Episode</a>
+<a class="list-group-item" href="./johnsnook-parsel-models-script.html">Script</a>
+<a class="list-group-item" href="./johnsnook-parsel-models-scriptsearch.html">ScriptSearch</a></div></div>    </div>
+    <div class="col-md-9 api-content" role="main">
+        <h1>Class johnsnook\parsel\lib\SqlFormatter</h1>
+<div class="top-nav">
+    <a href="index.html">All Classes</a>
+            | <a href="#properties">Properties</a>
+                | <a href="#methods">Methods</a>
+                    | <a href="#constants">Constants</a>
+    </div>
+
+<table class="summaryTable docClass table table-bordered">
+    <colgroup>
+        <col class="col-name" />
+        <col class="col-value" />
+    </colgroup>
+            <tr><th>Inheritance</th><td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td></tr>
+                                        </table>
+
+<div class="class-description">
+    <p><strong>SQL Formatter is a collection of utilities for debugging SQL queries.</strong></p>
+    <p>It includes methods for formatting, syntax highlighting, removing comments, etc.
+It's been heavily modified from the original by pimcore</p>
+
+    <p>See also <a href="https://github.com/pimcore/search-query-parser">https://github.com/pimcore/search-query-parser</a>.</p></div>
+
+<a id="properties"></a>
+
+<div class="summary doc-property">
+<h2>Public Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="$backtick_quote_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$backtick_quote_attributes-detail">$backtick_quote_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                <tr id="$boundary_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$boundary_attributes-detail">$boundary_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                    <tr id="$cli">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli-detail">$cli</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_backtick_quote">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_backtick_quote-detail">$cli_backtick_quote</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_boundary">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_boundary-detail">$cli_boundary</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_comment">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_comment-detail">$cli_comment</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_error">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_error-detail">$cli_error</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_functions">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_functions-detail">$cli_functions</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_number">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_number-detail">$cli_number</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_quote">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_quote-detail">$cli_quote</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_reserved">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_reserved-detail">$cli_reserved</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_variable">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_variable-detail">$cli_variable</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cli_word">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cli_word-detail">$cli_word</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$comment_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$comment_attributes-detail">$comment_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$error_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$error_attributes-detail">$error_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                    <tr id="$max_cachekey_size">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$max_cachekey_size-detail">$max_cachekey_size</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$number_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$number_attributes-detail">$number_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$pre_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$pre_attributes-detail">$pre_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$quote_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$quote_attributes-detail">$quote_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                                    <tr id="$reserved_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$reserved_attributes-detail">$reserved_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                    <tr id="$tab">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$tab-detail">$tab</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                <tr id="$use_pre">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$use_pre-detail">$use_pre</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$variable_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$variable_attributes-detail">$variable_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$word_attributes">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$word_attributes-detail">$word_attributes</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+    </table>
+</div>
+
+<div class="summary doc-property">
+<h2>Protected Properties</h2>
+
+<p><a href="#" class="toggle">Hide inherited properties</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-property" />
+    <col class="col-type" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Property</th><th>Type</th><th>Description</th><th>Defined By</th>
+</tr>
+            <tr id="$boundaries">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$boundaries-detail">$boundaries</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                <tr id="$cache_hits">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cache_hits-detail">$cache_hits</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$cache_misses">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$cache_misses-detail">$cache_misses</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                                                                <tr id="$functions">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$functions-detail">$functions</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$init">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$init-detail">$init</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                            <tr id="$regex_boundaries">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$regex_boundaries-detail">$regex_boundaries</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$regex_function">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$regex_function-detail">$regex_function</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$regex_reserved">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved-detail">$regex_reserved</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$regex_reserved_newline">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved_newline-detail">$regex_reserved_newline</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$regex_reserved_toplevel">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved_toplevel-detail">$regex_reserved_toplevel</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$reserved">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$reserved-detail">$reserved</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                <tr id="$reserved_newline">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$reserved_newline-detail">$reserved_newline</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="$reserved_toplevel">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$reserved_toplevel-detail">$reserved_toplevel</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                <tr id="$token_cache">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#$token_cache-detail">$token_cache</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                </table>
+</div>
+
+<a id="methods"></a>
+
+<div class="summary doc-method">
+<h2>Public Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+        <tr id="compress()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#compress()-detail">compress()</a></td>
+        <td>Compress a query by collapsing white space and removing comments</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="format()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#format()-detail">format()</a></td>
+        <td>Format the whitespace in a SQL string to make it easier to read.</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="getCacheStats()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#getCacheStats()-detail">getCacheStats()</a></td>
+        <td>Get stats about the token cache</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                    <tr id="highlight()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlight()-detail">highlight()</a></td>
+        <td>Add syntax highlighting to a SQL string</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                                                        <tr id="removeComments()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#removeComments()-detail">removeComments()</a></td>
+        <td>Remove all comments from a SQL string</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="splitQuery()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#splitQuery()-detail">splitQuery()</a></td>
+        <td>Split a SQL string into multiple queries.</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+        </table>
+</div>
+
+<div class="summary doc-method">
+<h2>Protected Methods</h2>
+
+<p><a href="#" class="toggle">Hide inherited methods</a></p>
+
+<table class="summary-table table table-striped table-bordered table-hover">
+<colgroup>
+    <col class="col-method" />
+    <col class="col-description" />
+    <col class="col-defined" />
+</colgroup>
+<tr>
+  <th>Method</th><th>Description</th><th>Defined By</th>
+</tr>
+                    <tr id="getNextToken()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#getNextToken()-detail">getNextToken()</a></td>
+        <td>Return the next token and token type in a SQL string.</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="getQuotedString()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#getQuotedString()-detail">getQuotedString()</a></td>
+        <td></td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                <tr id="highlightBacktickQuote()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightBacktickQuote()-detail">highlightBacktickQuote()</a></td>
+        <td>Highlights a backtick quoted string</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightBoundary()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightBoundary()-detail">highlightBoundary()</a></td>
+        <td>Highlights a boundary token</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightComment()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightComment()-detail">highlightComment()</a></td>
+        <td>Highlights a comment</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightError()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightError()-detail">highlightError()</a></td>
+        <td>Highlights an error</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightNumber()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightNumber()-detail">highlightNumber()</a></td>
+        <td>Highlights a number</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightQuote()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightQuote()-detail">highlightQuote()</a></td>
+        <td>Highlights a quoted string</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightReservedWord()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightReservedWord()-detail">highlightReservedWord()</a></td>
+        <td>Highlights a reserved word</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightToken()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightToken()-detail">highlightToken()</a></td>
+        <td>Highlights a token depending on its type.</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightVariable()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightVariable()-detail">highlightVariable()</a></td>
+        <td>Highlights a variable token</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="highlightWord()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#highlightWord()-detail">highlightWord()</a></td>
+        <td>Highlights a word token</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+            <tr id="init()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#init()-detail">init()</a></td>
+        <td>Stuff that only needs to be done once.  Builds regular expressions and sorts the reserved words.</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+                    <tr id="tokenize()">
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html#tokenize()-detail">tokenize()</a></td>
+        <td>Takes a SQL string and breaks it into tokens.</td>
+        <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+    </tr>
+    </table>
+</div>
+
+<a id="events"></a>
+
+<a id="constants"></a>
+<div class="summary doc-const">
+    <h2>Constants</h2>
+
+    <p><a href="#" class="toggle">Hide inherited constants</a></p>
+
+    <table class="summary-table table table-striped table-bordered table-hover">
+    <colgroup>
+        <col class="col-const" />
+        <col class="col-value" />
+        <col class="col-description" />
+        <col class="col-defined" />
+    </colgroup>
+    <tr>
+        <th>Constant</th><th>Value</th><th>Description</th><th>Defined By</th>
+    </tr>
+            <tr id="TOKEN_TYPE">
+          <td id="TOKEN_TYPE-detail">TOKEN_TYPE</td>
+          <td>0</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_BACKTICK_QUOTE">
+          <td id="TOKEN_TYPE_BACKTICK_QUOTE-detail">TOKEN_TYPE_BACKTICK_QUOTE</td>
+          <td>3</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_BLOCK_COMMENT">
+          <td id="TOKEN_TYPE_BLOCK_COMMENT-detail">TOKEN_TYPE_BLOCK_COMMENT</td>
+          <td>9</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_BOUNDARY">
+          <td id="TOKEN_TYPE_BOUNDARY-detail">TOKEN_TYPE_BOUNDARY</td>
+          <td>7</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_COMMENT">
+          <td id="TOKEN_TYPE_COMMENT-detail">TOKEN_TYPE_COMMENT</td>
+          <td>8</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_ERROR">
+          <td id="TOKEN_TYPE_ERROR-detail">TOKEN_TYPE_ERROR</td>
+          <td>11</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_NUMBER">
+          <td id="TOKEN_TYPE_NUMBER-detail">TOKEN_TYPE_NUMBER</td>
+          <td>10</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_QUOTE">
+          <td id="TOKEN_TYPE_QUOTE-detail">TOKEN_TYPE_QUOTE</td>
+          <td>2</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_RESERVED">
+          <td id="TOKEN_TYPE_RESERVED-detail">TOKEN_TYPE_RESERVED</td>
+          <td>4</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_RESERVED_NEWLINE">
+          <td id="TOKEN_TYPE_RESERVED_NEWLINE-detail">TOKEN_TYPE_RESERVED_NEWLINE</td>
+          <td>6</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_RESERVED_TOPLEVEL">
+          <td id="TOKEN_TYPE_RESERVED_TOPLEVEL-detail">TOKEN_TYPE_RESERVED_TOPLEVEL</td>
+          <td>5</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_VARIABLE">
+          <td id="TOKEN_TYPE_VARIABLE-detail">TOKEN_TYPE_VARIABLE</td>
+          <td>12</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_WHITESPACE">
+          <td id="TOKEN_TYPE_WHITESPACE-detail">TOKEN_TYPE_WHITESPACE</td>
+          <td>0</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_TYPE_WORD">
+          <td id="TOKEN_TYPE_WORD-detail">TOKEN_TYPE_WORD</td>
+          <td>1</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+            <tr id="TOKEN_VALUE">
+          <td id="TOKEN_VALUE-detail">TOKEN_VALUE</td>
+          <td>1</td>
+          <td>
+                        </td>
+          <td><a href="johnsnook-parsel-lib-sqlformatter.html">johnsnook\parsel\lib\SqlFormatter</a></td>
+        </tr>
+        </table>
+</div>
+
+<h2>Property Details</h2>
+
+<div class="property-doc">
+
+    <div class="detail-header h3" id="$backtick_quote_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$backtick_quote_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $backtick_quote_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$backtick_quote_attributes-detail">$backtick_quote_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;purple;"'</span></div>
+
+
+    <div class="detail-header h3" id="$boundaries-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$boundaries-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $boundaries        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$boundaries-detail">$boundaries</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">','</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">';'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">':'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">')'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'('</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'.'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'='</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&lt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'+'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'-'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'*'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'!'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'^'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'%'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'|'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&amp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'#'</span><span style="color: #007700">]</span></div>
+
+
+    <div class="detail-header h3" id="$boundary_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$boundary_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $boundary_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$boundary_attributes-detail">$boundary_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">''</span></div>
+
+
+    <div class="detail-header h3" id="$cache_hits-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cache_hits-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cache_hits        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cache_hits-detail">$cache_hits</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
+
+
+    <div class="detail-header h3" id="$cache_misses-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cache_misses-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cache_misses        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cache_misses-detail">$cache_misses</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">0</span></div>
+
+
+    <div class="detail-header h3" id="$cli-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli-detail">$cli</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$cli_backtick_quote-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_backtick_quote-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_backtick_quote        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_backtick_quote-detail">$cli_backtick_quote</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[35;1m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_boundary-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_boundary-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_boundary        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_boundary-detail">$cli_boundary</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">""</span></div>
+
+
+    <div class="detail-header h3" id="$cli_comment-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_comment-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_comment        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_comment-detail">$cli_comment</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[30;1m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_error-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_error-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_error        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_error-detail">$cli_error</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[31;1;7m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_functions-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_functions-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_functions        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_functions-detail">$cli_functions</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[37m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_number-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_number-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_number        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_number-detail">$cli_number</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[32;1m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_quote-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_quote-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_quote        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_quote-detail">$cli_quote</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[34;1m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_reserved-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_reserved-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_reserved        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_reserved-detail">$cli_reserved</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[37m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_variable-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_variable-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_variable        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_variable-detail">$cli_variable</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"\x1b[36;1m"</span></div>
+
+
+    <div class="detail-header h3" id="$cli_word-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$cli_word-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $cli_word        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$cli_word-detail">$cli_word</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">""</span></div>
+
+
+    <div class="detail-header h3" id="$comment_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$comment_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $comment_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$comment_attributes-detail">$comment_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;#aaa;"'</span></div>
+
+
+    <div class="detail-header h3" id="$error_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$error_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $error_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$error_attributes-detail">$error_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="background-color:&nbsp;red;"'</span></div>
+
+
+    <div class="detail-header h3" id="$functions-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$functions-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $functions        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$functions-detail">$functions</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'ABS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ACOS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ADDDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ADDTIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AES_DECRYPT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AES_ENCRYPT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AREA'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ASBINARY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ASCII'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ASIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ASTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ATAN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ATAN2'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AVG'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BDMPOLYFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BDMPOLYFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BDPOLYFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BDPOLYFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BENCHMARK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BIT_AND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BIT_COUNT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BIT_LENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BIT_OR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BIT_XOR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BOUNDARY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BUFFER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CAST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CEIL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CEILING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CENTROID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHAR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHARACTER_LENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHARSET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHAR_LENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COALESCE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COERCIBILITY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COLLATION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COMPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONCAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONCAT_WS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONNECTION_ID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONTAINS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONV'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONVERT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONVERT_TZ'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONVEXHULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COUNT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CRC32'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CROSSES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURRENT_DATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURRENT_TIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURRENT_TIMESTAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURRENT_USER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURTIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATABASE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATEDIFF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATE_ADD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATE_DIFF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATE_FORMAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATE_SUB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAYNAME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAYOFMONTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAYOFWEEK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAYOFYEAR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DECODE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DEFAULT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DEGREES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DES_DECRYPT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DES_ENCRYPT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DIFFERENCE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DIMENSION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DISJOINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DISTANCE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ELT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENCODE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENCRYPT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENDPOINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENVELOPE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EQUALS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXPORT_SET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXTERIORRING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXTRACT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXTRACTVALUE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FIELD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FIND_IN_SET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FLOOR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FORMAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FOUND_ROWS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FROM_DAYS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FROM_UNIXTIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMCOLLFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMCOLLFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYCOLLECTION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYCOLLECTIONFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYCOLLECTIONFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMETRYTYPE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GEOMFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GET_FORMAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GET_LOCK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GLENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GREATEST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GROUP_CONCAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GROUP_UNIQUE_USERS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HEX'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HOUR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IFNULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INET_ATON'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INET_NTOA'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INSERT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INSTR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTERIORRINGN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTERSECTION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTERSECTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTERVAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ISCLOSED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ISEMPTY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ISNULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ISRING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ISSIMPLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IS_FREE_LOCK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IS_USED_LOCK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LAST_DAY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LAST_INSERT_ID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LCASE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LEAST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LEFT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINEFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINEFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINESTRING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINESTRINGFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINESTRINGFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOAD_FILE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOCALTIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOCALTIMESTAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOCATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOG'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOG10'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOG2'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOWER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LPAD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LTRIM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAKEDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAKETIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAKE_SET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MASTER_POS_WAIT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAX'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBRCONTAINS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBRDISJOINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBREQUAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBRINTERSECTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBROVERLAPS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBRTOUCHES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MBRWITHIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MD5'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MICROSECOND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MINUTE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MLINEFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MLINEFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MOD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MONTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MONTHNAME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MPOINTFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MPOINTFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MPOLYFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MPOLYFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTILINESTRING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTILINESTRINGFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTILINESTRINGFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTIPOINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTIPOINTFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTIPOINTFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTIPOLYGON'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTIPOLYGONFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MULTIPOLYGONFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NAME_CONST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NULLIF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NUMGEOMETRIES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NUMINTERIORRINGS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NUMPOINTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OCT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OCTET_LENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OLD_PASSWORD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ORD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OVERLAPS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PASSWORD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PERIOD_ADD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PERIOD_DIFF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PI'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POINTFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POINTFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POINTN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POINTONSURFACE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POLYFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POLYFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POLYGON'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POLYGONFROMTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POLYGONFROMWKB'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POSITION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POW'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'POWER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'QUARTER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'QUOTE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RADIANS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RAND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RELATED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RELEASE_LOCK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REPEAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REPLACE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REVERSE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RIGHT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ROUND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ROW_COUNT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RPAD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RTRIM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SCHEMA'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SECOND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SEC_TO_TIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SESSION_USER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SHA'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SHA1'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SIGN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SLEEP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SOUNDEX'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SPACE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQRT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SRID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STARTPOINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STDDEV'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STDDEV_POP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STDDEV_SAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STRCMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STR_TO_DATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUBDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUBSTR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUBSTRING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUBSTRING_INDEX'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUBTIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SYMDIFFERENCE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SYSDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SYSTEM_USER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TAN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIMEDIFF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIMESTAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIMESTAMPADD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIMESTAMPDIFF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIME_FORMAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TIME_TO_SEC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TOUCHES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TO_DAYS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TRIM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TRUNCATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UCASE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNCOMPRESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNCOMPRESSED_LENGTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNHEX'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNIQUE_USERS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNIX_TIMESTAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UPDATEXML'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UPPER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'USER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UTC_DATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UTC_TIME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UTC_TIMESTAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UUID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VARIANCE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VAR_POP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VAR_SAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VERSION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WEEK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WEEKDAY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WEEKOFYEAR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WITHIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'X'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'Y'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'YEAR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'YEARWEEK'</span><span style="color: #007700">]</span></div>
+
+
+    <div class="detail-header h3" id="$init-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$init-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $init        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$init-detail">$init</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$max_cachekey_size-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$max_cachekey_size-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $max_cachekey_size        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$max_cachekey_size-detail">$max_cachekey_size</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">15</span></div>
+
+
+    <div class="detail-header h3" id="$number_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$number_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $number_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$number_attributes-detail">$number_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;green;"'</span></div>
+
+
+    <div class="detail-header h3" id="$pre_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$pre_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $pre_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$pre_attributes-detail">$pre_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;black;&nbsp;background-color:&nbsp;white;"'</span></div>
+
+
+    <div class="detail-header h3" id="$quote_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$quote_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $quote_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$quote_attributes-detail">$quote_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;blue;"'</span></div>
+
+
+    <div class="detail-header h3" id="$regex_boundaries-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$regex_boundaries-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $regex_boundaries        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$regex_boundaries-detail">$regex_boundaries</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$regex_function-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$regex_function-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $regex_function        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$regex_function-detail">$regex_function</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$regex_reserved-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $regex_reserved        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved-detail">$regex_reserved</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$regex_reserved_newline-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved_newline-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $regex_reserved_newline        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved_newline-detail">$regex_reserved_newline</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$regex_reserved_toplevel-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved_toplevel-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $regex_reserved_toplevel        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$regex_reserved_toplevel-detail">$regex_reserved_toplevel</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span></div>
+
+
+    <div class="detail-header h3" id="$reserved-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$reserved-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $reserved        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$reserved-detail">$reserved</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'ACCESSIBLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ACTION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AGAINST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AGGREGATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ALGORITHM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ALL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ALTER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ANALYSE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ANALYZE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ASC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AUTOCOMMIT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AUTO_INCREMENT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BACKUP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BEGIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BETWEEN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BINLOG'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'BOTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CASCADE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CASE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHANGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHANGED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHARACTER&nbsp;SET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHARSET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHECK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CHECKSUM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COLLATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COLLATION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COLUMN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COLUMNS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COMMENT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COMMIT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COMMITTED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'COMPRESSED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONCURRENT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONSTRAINT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONTAINS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CONVERT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CREATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CROSS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'CURRENT_TIMESTAMP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATABASE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DATABASES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAY_HOUR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAY_MINUTE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DAY_SECOND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DEFAULT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DEFINER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DELAYED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DELETE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DESC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DESCRIBE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DETERMINISTIC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DISTINCT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DISTINCTROW'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DIV'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DO'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DUMPFILE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DUPLICATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DYNAMIC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ELSE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENCLOSED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'END'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENGINE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENGINE_TYPE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ENGINES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ESCAPE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ESCAPED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EVENTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXEC'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXECUTE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXISTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXPLAIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXTENDED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FAST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FIELDS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FILE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FIRST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FIXED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FLUSH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FOR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FORCE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FOREIGN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FULLTEXT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FUNCTION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GLOBAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GRANT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GRANTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GROUP_CONCAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HEAP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HIGH_PRIORITY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HOSTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HOUR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HOUR_MINUTE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HOUR_SECOND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IDENTIFIED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IFNULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IGNORE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INDEX'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INDEXES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INFILE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INSERT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INSERT_ID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INSERT_METHOD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTERVAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTO'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INVOKER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'IS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ISOLATION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'KEY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'KEYS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'KILL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LAST_INSERT_ID'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LEADING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LEVEL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LIKE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ILIKE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINEAR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LINES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOAD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOCAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOCK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOCKS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOGS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LOW_PRIORITY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MARIA'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MASTER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MASTER_CONNECT_RETRY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MASTER_HOST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MASTER_LOG_FILE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MATCH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAX_CONNECTIONS_PER_HOUR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAX_QUERIES_PER_HOUR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAX_ROWS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAX_UPDATES_PER_HOUR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MAX_USER_CONNECTIONS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MEDIUM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MERGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MINUTE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MINUTE_SECOND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MIN_ROWS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MODE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MODIFY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MONTH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MRG_MYISAM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'MYISAM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NAMES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NATURAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NOT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NOW()'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'NULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OFFSET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ON'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OPEN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OPTIMIZE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OPTION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OPTIONALLY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ON&nbsp;UPDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ON&nbsp;DELETE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OUTFILE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PACK_KEYS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PAGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PARTIAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PARTITION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PARTITIONS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PASSWORD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PRIMARY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PRIVILEGES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PROCEDURE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PROCESS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PROCESSLIST'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'PURGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'QUICK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RANGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RAID0'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RAID_CHUNKS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RAID_CHUNKSIZE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RAID_TYPE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'READ'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'READ_ONLY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'READ_WRITE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REFERENCES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REGEXP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RELOAD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RENAME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REPAIR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REPEATABLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REPLACE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REPLICATION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RESET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RESTORE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RESTRICT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RETURN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RETURNS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'REVOKE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RLIKE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ROLLBACK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ROW'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ROWS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ROW_FORMAT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SECOND'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SECURITY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SEPARATOR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SERIALIZABLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SESSION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SHARE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SHOW'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SHUTDOWN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SLAVE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SONAME'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SOUNDS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_AUTO_IS_NULL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_BIG_RESULT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_BIG_SELECTS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_BIG_TABLES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_BUFFER_RESULT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_CALC_FOUND_ROWS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_LOG_BIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_LOG_OFF'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_LOG_UPDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_LOW_PRIORITY_UPDATES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_MAX_JOIN_SIZE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_QUOTE_SHOW_CREATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_SAFE_UPDATES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_SELECT_LIMIT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_SLAVE_SKIP_COUNTER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_SMALL_RESULT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_WARNINGS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_CACHE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SQL_NO_CACHE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'START'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STARTING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STATUS'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STOP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STORAGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STRAIGHT_JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STRING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'STRIPED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SUPER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TABLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TABLES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TEMPORARY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TERMINATED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'THEN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TO'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TRAILING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TRANSACTIONAL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TRUE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TRUNCATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TYPE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'TYPES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNCOMMITTED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNIQUE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNLOCK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNSIGNED'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'USAGE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'USE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'USING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VARIABLES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VIEW'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WHEN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WITH'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WORK'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WRITE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'YEAR_MONTH'</span><span style="color: #007700">]</span></div>
+
+
+    <div class="detail-header h3" id="$reserved_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$reserved_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $reserved_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$reserved_attributes-detail">$reserved_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="font-weight:bold;"'</span></div>
+
+
+    <div class="detail-header h3" id="$reserved_newline-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$reserved_newline-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $reserved_newline        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$reserved_newline-detail">$reserved_newline</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'LEFT&nbsp;OUTER&nbsp;JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RIGHT&nbsp;OUTER&nbsp;JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LEFT&nbsp;JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'RIGHT&nbsp;JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OUTER&nbsp;JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INNER&nbsp;JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'JOIN'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'XOR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'OR'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AND'</span><span style="color: #007700">]</span></div>
+
+
+    <div class="detail-header h3" id="$reserved_toplevel-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$reserved_toplevel-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $reserved_toplevel        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$reserved_toplevel-detail">$reserved_toplevel</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[</span><span style="color: #DD0000">'SELECT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'FROM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'WHERE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'SET'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ORDER&nbsp;BY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'GROUP&nbsp;BY'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'LIMIT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DROP'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'VALUES'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UPDATE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'HAVING'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ADD'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'AFTER'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'ALTER&nbsp;TABLE'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'DELETE&nbsp;FROM'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNION&nbsp;ALL'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'UNION'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'EXCEPT'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'INTERSECT'</span><span style="color: #007700">]</span></div>
+
+
+    <div class="detail-header h3" id="$tab-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$tab-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $tab        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$tab-detail">$tab</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&nbsp;&nbsp;'</span></div>
+
+
+    <div class="detail-header h3" id="$token_cache-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$token_cache-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $token_cache        <span class="detail-header-tag small">
+            protected            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">protected static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$token_cache-detail">$token_cache</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;[]</span></div>
+
+
+    <div class="detail-header h3" id="$use_pre-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$use_pre-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $use_pre        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$use_pre-detail">$use_pre</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span></div>
+
+
+    <div class="detail-header h3" id="$variable_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$variable_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $variable_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$variable_attributes-detail">$variable_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;orange;"'</span></div>
+
+
+    <div class="detail-header h3" id="$word_attributes-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#$word_attributes-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $word_attributes        <span class="detail-header-tag small">
+            public            static                                    property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public static</span> <span class="signature-type"></span> <a href="johnsnook-parsel-lib-sqlformatter.html#$word_attributes-detail">$word_attributes</a> <span style="color: #0000BB"></span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'style="color:&nbsp;#333;"'</span></div>
+
+</div>
+<h2>Method Details</h2>
+
+<div class="method-doc">
+
+    <div class="detail-header h3" id="compress()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#compress()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        compress()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Compress a query by collapsing white space and removing comments</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#compress()-detail">compress</a></strong> ( <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string without comments</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="format()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#format()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        format()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Format the whitespace in a SQL string to make it easier to read.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#format()-detail">format</a></strong> ( <span style="color: #0000BB">$string</span>, <span style="color: #0000BB">$highlight&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">true</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$highlight</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>If true, syntax highlighting will also be performed</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string with HTML styles and formatting wrapped in a <pre> tag</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getCacheStats()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#getCacheStats()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getCacheStats()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Get stats about the token cache</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">Array</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#getCacheStats()-detail">getCacheStats</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">Array</td>
+                  <td class="param-desc-col"><p>An array containing the keys 'hits', 'misses', 'entries', and 'size' in bytes</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getNextToken()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#getNextToken()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getNextToken()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Return the next token and token type in a SQL string.</strong></p>
+
+        <p>Quoted strings, comments, reserved words, whitespace, and punctuation are all their own tokens.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">Array</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#getNextToken()-detail">getNextToken</a></strong> ( <span style="color: #0000BB">$string</span>, <span style="color: #0000BB">$previous&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">null</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                            <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$previous</span></td>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.array">array</a></td>
+                  <td class="param-desc-col"><p>The result of the previous getNextToken() call</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">Array</td>
+                  <td class="param-desc-col"><p>An associative array containing the type and value of the token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getQuotedString()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#getQuotedString()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getQuotedString()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">void</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#getQuotedString()-detail">getQuotedString</a></strong> ( <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col"></td>
+                  <td class="param-desc-col"></td>
+                </tr>
+                                                </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlight()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlight()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlight()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Add syntax highlighting to a SQL string</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlight()-detail">highlight</a></strong> ( <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string with HTML styles applied</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightBacktickQuote()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightBacktickQuote()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightBacktickQuote()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a backtick quoted string</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightBacktickQuote()-detail">highlightBacktickQuote</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightBoundary()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightBoundary()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightBoundary()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a boundary token</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightBoundary()-detail">highlightBoundary</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightComment()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightComment()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightComment()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a comment</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightComment()-detail">highlightComment</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightError()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightError()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightError()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights an error</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightError()-detail">highlightError</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightNumber()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightNumber()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightNumber()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a number</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightNumber()-detail">highlightNumber</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightQuote()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightQuote()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightQuote()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a quoted string</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightQuote()-detail">highlightQuote</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightReservedWord()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightReservedWord()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightReservedWord()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a reserved word</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightReservedWord()-detail">highlightReservedWord</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightToken()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightToken()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightToken()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a token depending on its type.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightToken()-detail">highlightToken</a></strong> ( <span style="color: #0000BB">$token</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$token</span></td>
+                  <td class="param-type-col">Array</td>
+                  <td class="param-desc-col"><p>An associative array containing type and value.</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightVariable()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightVariable()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightVariable()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a variable token</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightVariable()-detail">highlightVariable</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="highlightWord()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#highlightWord()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        highlightWord()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Highlights a word token</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#highlightWord()-detail">highlightWord</a></strong> ( <span style="color: #0000BB">$value</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$value</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The token's value</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>HTML code of the highlighted token.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="init()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#init()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        init()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Stuff that only needs to be done once.  Builds regular expressions and sorts the reserved words.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">void</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#init()-detail">init</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="removeComments()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#removeComments()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        removeComments()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Remove all comments from a SQL string</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">String</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#removeComments()-detail">removeComments</a></strong> ( <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string without comments</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="splitQuery()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#splitQuery()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        splitQuery()
+        <span class="detail-header-tag small">
+            public                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Split a SQL string into multiple queries.</strong></p>
+
+        <p>Uses ";" as a query delimiter.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public static</span> <span class="signature-type">Array</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#splitQuery()-detail">splitQuery</a></strong> ( <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">Array</td>
+                  <td class="param-desc-col"><p>An array of individual query strings without trailing semicolons</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="tokenize()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="johnsnook-parsel-lib-sqlformatter.html#tokenize()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        tokenize()
+        <span class="detail-header-tag small">
+            protected                        static            method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Takes a SQL string and breaks it into tokens.</strong></p>
+
+        <p>Each token is an associative array with type and value.</p>
+
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">protected static</span> <span class="signature-type">Array</span> <strong><a href="johnsnook-parsel-lib-sqlformatter.html#tokenize()-detail">tokenize</a></strong> ( <span style="color: #0000BB">$string</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$string</span></td>
+                  <td class="param-type-col">String</td>
+                  <td class="param-desc-col"><p>The SQL string</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">Array</td>
+                  <td class="param-desc-col"><p>An array of tokens.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+</div>
+        </div>
+</div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $("a.toggle").on('click', function () {
+        var $this = $(this);
+        if ($this.hasClass('properties-hidden')) {
+            $this.text($this.text().replace(/Show/,'Hide'));
+            $this.parents(".summary").find(".inherited").show();
+            $this.removeClass('properties-hidden');
+        } else {
+            $this.text($this.text().replace(/Hide/,'Show'));
+            $this.parents(".summary").find(".inherited").hide();
+            $this.addClass('properties-hidden');
+        }
+
+        return false;
+    });
+    /*
+     $(".sourceCode a.show").toggle(function () {
+     $(this).text($(this).text().replace(/show/,'hide'));
+     $(this).parents(".sourceCode").find("div.code").show();
+     },function () {
+     $(this).text($(this).text().replace(/hide/,'show'));
+     $(this).parents(".sourceCode").find("div.code").hide();
+     });
+     $("a.sourceLink").click(function () {
+     $(this).attr('target','_blank');
+     });
+     */
+    /*]]>*/
+</script>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Wed, 08 Aug 2018 20:53:02 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
