@@ -15,18 +15,29 @@ namespace johnsnook\parsel\lib;
 
 /**
  * Represents a single lexeme token
+ *
+ * @property-read int $type The type of token as defined in [[Tokens]]
+ * @property-read string $name Human readable type name
+ * @property-read string $field If token has field definition, the fields name
+ * @property-read int $line Not sure what this is for
+ * @property-read string $value The tokens contents
  */
 final class Token extends Getter {
 
     /**
      * @var int
      */
-    private $token;
+    private $type;
 
     /**
      * @var string
      */
     private $name;
+
+    /**
+     * @var string
+     */
+    private $field;
 
     /**
      * @var int
@@ -36,25 +47,37 @@ final class Token extends Getter {
     /**
      * @var string
      */
-    private $content;
+    private $value;
 
     /**
      * @param int $token
      * @param int $line
-     * @param string $content
+     * @param string $value
      */
-    public function __construct($token, $line, $content) {
-        $this->token = $token;
+    public function __construct($type, $line, $value) {
+        $this->type = $type;
         $this->line = $line;
-        $this->content = $content;
-        $this->name = Tokens::getName($token);
+        $this->value = $value;
+
+        /**
+         * 1) See if a colon is in the term
+         * 2) Split the term and set the field to the leftmost split term value
+         * 3) set the value to the right side of the original term
+         */
+        if ($this->isTypeOf([
+                    Tokens::FIELD_TERM,
+                    Tokens::FIELD_TERM_QUOTED,
+                    Tokens::FIELD_TERM_QUOTED_SINGLE])) {
+            list($this->field, $this->value) = explode(':', $this->value);
+        }
+        $this->name = Tokens::getName($type);
     }
 
     /**
      * @return int
      */
-    public function getToken() {//: int
-        return $this->token;
+    public function getType() {//: int
+        return $this->type;
     }
 
     /**
@@ -67,7 +90,7 @@ final class Token extends Getter {
             $token = [$token];
         }
 
-        return in_array($this->token, $token);
+        return in_array($this->type, $token);
     }
 
     /**
@@ -75,6 +98,13 @@ final class Token extends Getter {
      */
     public function getName() {//: string
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getField() {//: string
+        return $this->field;
     }
 
     /**
@@ -87,8 +117,8 @@ final class Token extends Getter {
     /**
      * @return string
      */
-    public function getContent() {//: string
-        return $this->content;
+    public function getValue() {//: string
+        return $this->value;
     }
 
 }

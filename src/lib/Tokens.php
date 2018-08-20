@@ -28,7 +28,10 @@ final class Tokens {
     const TERM = 5;
     const TERM_QUOTED = 6;
     const TERM_QUOTED_SINGLE = 7;
-    const FULL_MATCH = 8;
+    const FIELD_TERM = 8;
+    const FIELD_TERM_QUOTED = 9;
+    const FIELD_TERM_QUOTED_SINGLE = 10;
+    const FULL_MATCH = 11;
 
     /**
      * Get a token name from its value
@@ -59,7 +62,10 @@ final class Tokens {
             $termTokens = [
                 self::TERM,
                 self::TERM_QUOTED,
-                self::TERM_QUOTED_SINGLE
+                self::TERM_QUOTED_SINGLE,
+                self::FIELD_TERM,
+                self::FIELD_TERM_QUOTED,
+                self::FIELD_TERM_QUOTED_SINGLE
             ];
         }
 

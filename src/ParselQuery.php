@@ -24,6 +24,7 @@ use yii\base\InvalidConfigException;
  * @property-read string $lastError The message when a query can't be parsed.
  * @property-read array $tokens The tokens created by [[Lexer::lex]].
  * @property-read array $queryParts The query parts created by [[Parser::parse]].
+ * @property-read string $sql The sql query.
  * @property [[yii\db\Query]] $dbQuery The database query we'll be adding to
  * @property string|array $userQuery The search string entered by the user, or the array of sub-query parts
  * @property array|null $searchFields The list of fields to include in our search.  If not specified, use text/varchar/char fields in select clause.  If * then use all searchable fields in table.
@@ -62,6 +63,14 @@ class ParselQuery extends \yii\base\BaseObject {
      */
     protected function processQuery($dbQuery, $queryParts, $fields = null) {
 
+        /** replace numeric keys with the value */
+        foreach ($fields as $key => $item) {
+            if (is_numeric($key)) {
+                $fields[$item] = $item;
+                unset($fields[$key]);
+            }
+        }
+
         $this->lastError = false;
         $like = self::fuzzyOperator();
         /** If things go tits up, return the unmodified original. */
@@ -87,29 +96,19 @@ class ParselQuery extends \yii\base\BaseObject {
                     /**
                      * allow the user to specify a single field.
                      * 1) Copy the fields array to fieldlist
-                     * 2) See if a colon is in the term
-                     * 3) Split the term and check if the left is in the fieldlist
-                     * 4) set the value to the right side of the original term
                      * 5) set the fieldlist to the single field specified in term
                      */
                     $fieldlist = $fields;
-                    if (strpos($queryPart['value'], ':') !== false) {
-                        $fieldVal = explode(':', $queryPart['value']);
-                        $fieldExpression = null;
-                        if (in_array($fieldVal[0], array_keys($fields), true)) {
-                            $fieldExpression = $fields[$fieldVal[0]];
-                        } elseif (in_array($fieldVal[0], array_values($fields), true)) {
-                            $fieldExpression = $fieldVal[0];
-                        }
-                        if (!is_null($fieldExpression)) {
+                    if (isset($queryPart['field'])) {
+                        if (in_array($queryPart['field'], array_keys($fields), true)) {
+                            $fieldExpression = $fields[$queryPart['field']];
                             $fieldlist = [$fieldExpression];
-                            $queryPart['value'] = $fieldVal[1];
                         }
                     }
 
                     $value = self::prepareTermValue($queryPart);
                     foreach ($fieldlist as $field) {
-                        if ($queryPart['fullMatch']) {
+                        if ($queryPart['fullMatch'] && !$queryPart['fuzzy']) {
                             $where[] = [$field => $value]; //{$neg}
                         } else {
                             $where[] = [$like, $field, $value, false]; //{$neg}
@@ -280,10 +279,10 @@ class ParselQuery extends \yii\base\BaseObject {
              * this part is just to make sure we don't end up with double
              * wildcards at the beginning or end of our term
              */
-            if ($split[strlen($value) - 1] !== '%') {
+            if (($split[strlen($value) - 1] !== '%' ) && (!$term->fullMatch)) {
                 $value .= '%';
             }
-            if ($split[0] !== '%') {
+            if (($split[0] !== '%' ) && (!$term->fullMatch)) {
                 $value = '%' . $value;
             }
         } elseif ($term->quoted === Parser::QUOTE_SINGLE) {

@@ -47,9 +47,13 @@ class Lexer {
         return [
             '\(' => Tokens::BRACE_OPEN,
             '\)' => Tokens::BRACE_CLOSE,
-            '(AND|OR)' => Tokens::KEYWORD,
+            #'(AND|OR)' => Tokens::KEYWORD,
+            '(?<![A-Z])(AND|OR)(?![A-Z])' => Tokens::KEYWORD,
             '-' => Tokens::NEGATION,
             '=' => Tokens::FULL_MATCH,
+            '[^\s!\(\)]+:"[^"]+"' => Tokens::FIELD_TERM_QUOTED,
+            "[^\s!\(\)]+:'[^']+'" => Tokens::FIELD_TERM_QUOTED_SINGLE,
+            '[^\s!\(\)]+:[^\s!\(\)]+' => Tokens::FIELD_TERM,
             '"[^"]+"' => Tokens::TERM_QUOTED,
             "'[^']+'" => Tokens::TERM_QUOTED_SINGLE,
             '[^\s!\(\)]+' => Tokens::TERM,
@@ -82,7 +86,8 @@ class Lexer {
      */
     public function lex($string) {#: array
         $tokens = $this->lexer->lex($string);
-
+//        dump($tokens);
+//        die();
         // ignore whitespace
         $tokens = array_filter($tokens, function ($token) {
             return $token[0] !== Tokens::WHITESPACE;

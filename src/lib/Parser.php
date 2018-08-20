@@ -69,18 +69,25 @@ class Parser {
                 continue;
             }
 
-            // terms (the actual values we're looking for)
-            if (in_array($token->getToken(), Tokens::getTermTokens())) {
-                $value = self::normalizeTerm($token);
+            /** terms (the actual values we're looking for) */
+            if (in_array($token->type, Tokens::getTermTokens())) {
                 $term = [
                     'type' => 'term',
-                    'value' => $value,
-                    'fuzzy' => self::isFuzzy($token, $value),
+                    'value' => self::normalizeTerm($token),
+                    'fuzzy' => self::isFuzzy($token),
                     'negated' => self::isNegated($i, $tokens),
                     'fullMatch' => self::isFullMatch($i, $tokens),
                     'quoted' => self::quoteType($token)
                 ];
 
+                /** If token has a field, add it to array part attribute */
+                if ($token->isTypeOf([
+                            Tokens::FIELD_TERM,
+                            Tokens::FIELD_TERM_QUOTED,
+                            Tokens::FIELD_TERM_QUOTED_SINGLE
+                        ])) {
+                    $term['field'] = $token->field;
+                }
                 $currentQuery = self::conjunctionJunction($currentQuery);
                 $currentQuery[] = $term;
             } // terms
@@ -89,10 +96,10 @@ class Parser {
             if ($token->isTypeOf(Tokens::KEYWORD)) {
                 if ($previousToken && $previousToken->isTypeOf(Tokens::KEYWORD)) {
                     throw new ParserException(sprintf(
-                            'Keyword can\'t be succeeded by another keyword (%s %s)', $previousToken->getContent(), $token->getContent()
+                            'Keyword can\'t be succeeded by another keyword (%s %s)', $previousToken->value, $token->value
                     ));
                 }
-                $currentQuery[] = ['type' => 'keyword', 'value' => strtoupper($token->getContent())];
+                $currentQuery[] = ['type' => 'keyword', 'value' => strtoupper($token->value)];
             }
             $previousToken = $token;
         }
@@ -109,8 +116,8 @@ class Parser {
     protected static function findMatchPos($tokens, $i) {
         $j = 0;
         for ($i; $i <= count($tokens) + 1; $i++) {
-            $j += ($tokens[$i]->token === Tokens::BRACE_OPEN ? 1 : 0 );
-            if ($tokens[$i]->token === Tokens::BRACE_CLOSE) {
+            $j += ($tokens[$i]->type === Tokens::BRACE_OPEN ? 1 : 0 );
+            if ($tokens[$i]->type === Tokens::BRACE_CLOSE) {
                 if (--$j < 1) {
                     return $i;
                 }
@@ -154,15 +161,14 @@ class Parser {
      * Check if the token is fuzzy (is not single quoted and contains *)
      *
      * @param Token $token
-     * @param string $value
      *
      * @return bool
      */
-    protected static function isFuzzy($token, $value) { #: bool
+    protected static function isFuzzy($token) { #: bool
         if ($token->isTypeOf([Tokens::TERM_QUOTED_SINGLE])) {
             return false;
         }
-        return false !== (strpos($value, '*') || strpos($value, '?'));
+        return false !== (strpos($token->value, '*') || strpos($token->value, '?'));
     }
 
     /**
@@ -172,10 +178,10 @@ class Parser {
      * @return bool
      */
     protected static function quoteType($token) {
-        if ($token->isTypeOf(Tokens::TERM_QUOTED)) {
+        if ($token->isTypeOf([Tokens::TERM_QUOTED, Tokens::FIELD_TERM_QUOTED])) {
             return self::QUOTE_DOUBLE;
         }
-        if ($token->isTypeOf(Tokens::TERM_QUOTED_SINGLE)) {
+        if ($token->isTypeOf([Tokens::TERM_QUOTED_SINGLE, Tokens::FIELD_TERM_QUOTED_SINGLE])) {
             return self::QUOTE_SINGLE;
         }
         return self::QUOTE_NONE;
@@ -243,11 +249,11 @@ class Parser {
      * @return string
      */
     protected static function normalizeTerm($token) {//: string
-        $term = $token->getContent();
+        $term = $token->value;
 
-        if ($token->isTypeOf(Tokens::TERM_QUOTED)) {
+        if ($token->isTypeOf([Tokens::TERM_QUOTED, Tokens::FIELD_TERM_QUOTED])) {
             $term = preg_replace('/^"(.*)"$/', '$1', $term);
-        } elseif ($token->isTypeOf(Tokens::TERM_QUOTED_SINGLE)) {
+        } elseif ($token->isTypeOf([Tokens::TERM_QUOTED_SINGLE, Tokens::FIELD_TERM_QUOTED_SINGLE])) {
             $term = preg_replace('/^\'(.*)\'$/', '$1', $term);
         }
 
