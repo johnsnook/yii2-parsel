@@ -5,35 +5,35 @@ Allows developers to provide a boolean search query interface, similar to Google
 Turns a user query like '`georgia -(atlanta or decatur)`' into '`georgia AND NOT (atlanta or decatur)`' which is then turn into the follow SQL:
 
 ```sql
-SELECT 
+SELECT
   "ip", /* ip address */
   "visits", /* how many requests they've made */
-  "city", 
-  "region" 
-FROM 
+  "city",
+  "region"
+FROM
 /* A table similar to apaches access log.  See my extension yii2-ipFilter */
-  "visitor" 
-WHERE 
+  "visitor"
+WHERE
   (
-    ("visitor"."ip" ILIKE '%georgia%') 
-    OR ("visitor"."city" ILIKE '%georgia%') 
+    ("visitor"."ip" ILIKE '%georgia%')
+    OR ("visitor"."city" ILIKE '%georgia%')
     OR ("visitor"."region" ILIKE '%georgia%')
-  ) 
+  )
   AND ( /** marvel as we efortlessly generate a subquery */
     "ip" NOT IN (
-      SELECT 
-        "ip" 
-      FROM 
-        "visitor" 
-      WHERE 
+      SELECT
+        "ip"
+      FROM
+        "visitor"
+      WHERE
         (
-          ("visitor"."ip" ILIKE '%atlanta%') 
-          OR ("visitor"."city" ILIKE '%atlanta%') 
+          ("visitor"."ip" ILIKE '%atlanta%')
+          OR ("visitor"."city" ILIKE '%atlanta%')
           OR ("visitor"."region" ILIKE '%atlanta%')
-        ) 
+        )
         OR (
-          ("visitor"."ip" ILIKE '%decatur%') 
-          OR ("visitor"."city" ILIKE '%decatur%') 
+          ("visitor"."ip" ILIKE '%decatur%')
+          OR ("visitor"."city" ILIKE '%decatur%')
           OR ("visitor"."region" ILIKE '%decatur%')
         )
     )
@@ -87,7 +87,7 @@ $parsel->dbQuery->all();
 
 ## Tokens/behavior:
 
-Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is case insensitive as long as your database's `LIKE` operator is.  PostgreSQL will use `ILIKE`.  
+Fields to be search must be either text, varchar or char currently.  Future versions may expand to number, dates and maybe even JSON.  All search terms, except where specified bye the full match operator are wrapped in your databases wildcard of choice.  Searching for "smart"  is equivalent to the SQL expression `'%smart%'`.  Search is case insensitive as long as your database's `LIKE` operator is.  PostgreSQL will use `ILIKE`.
 
 #### Conjunctives:
 
@@ -118,9 +118,9 @@ See files in /examples.  If it's still up, you might also be able to play with a
 
 **PostgreSQL**
 
-[Faster PostgreSQL Searches with Trigrams](http://blog.scoutapp.com/articles/2016/07/12/how-to-make-text-searches-in-postgresql-faster-with-trigram-similarity)	
+[Faster PostgreSQL Searches with Trigrams](http://blog.scoutapp.com/articles/2016/07/12/how-to-make-text-searches-in-postgresql-faster-with-trigram-similarity)
 
-[Optimizing databases for fuzzy searching](https://stackoverflow.com/a/13452528) 
+[Optimizing databases for fuzzy searching](https://stackoverflow.com/a/13452528)
 
 **MySQL**
 
@@ -132,4 +132,3 @@ This project was built by heavily modifying the excellent "[Search Query Parser]
 
 Both projects are made possible by the amazing and lightning quick [lexer library](https://github.com/nikic/Phlexy) by Nikita Popov of Berlin.  It's work reading his [article on the subject](http://nikic.github.io/2011/10/23/Improving-lexing-performance-in-PHP.html).
 
-[.](https://snooky.biz/post/section/Ragedump) [.](https://snooky.biz/post/the-sixth-general-order) [.](https://snooky.biz/post/legal-threats) [.](https://snooky.biz/post/taking-out-the-trash) [.](https://snooky.biz/post/jeez-babe-i-dont-know-whats-wrong) [.](https://snooky.biz/post/my-stupid-vitriol) [.](https://snooky.biz/post/the-drama-train-just-keeps-a-chuggin) [.](https://snooky.biz/post/hypocrisy) [.](https://snooky.biz/post/marjorie-snook-isnt-your-name) [.](https://snooky.biz/post/inconstant-hooer) [.](https://snooky.biz/post/mother-of-the-year) 
