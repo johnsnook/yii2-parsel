@@ -2,20 +2,16 @@ Array
 (
     [0] => Array
         (
-            [file] => src/ParselQuery.php
-            [message] => broken link to \johnsnook\parsel\parseQuery in johnsnook\parsel\ParselQuery
+            [line] => 25
+            [file] => src/Module.php
+            [message] => Method bootstrap has no parent to inherit from in johnsnook\parsel\Module.
         )
 
     [1] => Array
         (
-            [file] => src/ParselQuery.php
-            [message] => broken link to \johnsnook\parsel\parseQuery in johnsnook\parsel\ParselQuery
-        )
-
-    [2] => Array
-        (
-            [file] => src/ParselQuery.php
-            [message] => broken link to \johnsnook\parsel\parseQuery in johnsnook\parsel\ParselQuery
+            [line] => 57
+            [file] => src/Token.php
+            [message] => Undefined parameter documented: $token in __construct().
         )
 
 )

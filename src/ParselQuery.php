@@ -13,10 +13,10 @@
 
 namespace johnsnook\parsel;
 
-use johnsnook\parsel\lib\Lexer;
-use johnsnook\parsel\lib\Parser;
-use johnsnook\parsel\lib\ParserException;
-use johnsnook\parsel\lib\SqlFormatter;
+use johnsnook\parsel\Lexer;
+use johnsnook\parsel\Parser;
+use johnsnook\parsel\ParserException;
+use johnsnook\parsel\SqlFormatter;
 use yii\base\InvalidConfigException;
 
 /**

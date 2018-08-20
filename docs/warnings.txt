@@ -1,0 +1,10 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 16
+            [file] => src/Module.php
+            [message] => No docblock for element 'johnsnook\parsel\Module'
+        )
+
+)
